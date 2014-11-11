@@ -7,7 +7,7 @@ public class TestingSQL {
 
 	public static void main(String[] args) {
 		System.out.println("MySQL Connect Example.");
-		Connection conn = null;
+		Connection conn = ;
 		String url = "jbdc:mysql://localhost:3306/";
 		String dbName = "jdbctutorial";
 		String driver = "com.mysql.jdbc.Driver";
