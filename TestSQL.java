@@ -43,26 +43,5 @@ public class TestSQL {
 	} else {
 	    System.out.println("Failed to make connection!");
 	}
-
-<<<<<<< HEAD
-	public static void main(String[] args) {
-		System.out.println("MySQL Connect Example.");
-		Connection conn = ;
-		String url = "jbdc:mysql://localhost:3306/";
-		String dbName = "jdbctutorial";
-		String driver = "com.mysql.jdbc.Driver";
-		String userName = "root"; 
-  		String password = "root";
-  		try {
-  		Class.forName(driver).newInstance();
-  		conn = DriverManager.getConnection(url+dbName,userName,password);
-  		System.out.println("Connected to the database");
-  		conn.close();
-  		System.out.println("Disconnected from database");
-  		} catch (Exception e) {
-  		e.printStackTrace();
- 		}
-=======
->>>>>>> 82a67a06f7bf48c5fcf17d5190c6b7455dc9612e
 	}
 }
