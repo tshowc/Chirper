@@ -28,12 +28,9 @@ public class TestSQL {
         String username = "tchao";
         String password = "database1234";
 	try {
-//	    String url = "jdbc:mysql://http://rosemary.umw.edu/phpmyadmin/:3306/cpsc348_chao/";
-//	    String url = "jdbc:mysql://rosemary.umw.edu/phpmyadmin/cpsc348_chao";
-//	    String username = "tchao";
-//	    String password = "database1234";
+
 	    conn = DriverManager.getConnection(url, username, password);
-	
+
 	} catch (SQLException e) {
 	    System.out.println("Connection Failed! Check output console");
 	    e.printStackTrace();
@@ -45,6 +42,6 @@ public class TestSQL {
 	} else {
 	    System.out.println("Failed to make connection!");
 	}
+
 	}
 }
-
