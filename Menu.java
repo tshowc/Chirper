@@ -22,10 +22,10 @@ public class Menu
 	 * Displays the main menu and returns user input.
 	 * @return user input
          */
-	String public displayMain()
+	public String displayMain()
 	{
 		//Print logo
-		Sysetm.out.println("	 _____ _   _                   .-.        ");
+		System.out.println("	 _____ _   _                   .-.        ");
 		System.out.println("    |     | |_|_|___ ___ ___ ___  /'v'\       ");
 		System.out.println("    |   --|   | |  _| . | -_|  _|(/   \)      ");
 		System.out.println(" 	|_____|_|_|_|_| |  _|___|_|===="="===<    ");
@@ -56,7 +56,7 @@ public class Menu
 	/**
 	 * Displays the search menu
 	 */
-	public displaySearch()
+	public void displaySearch()
 	{
 		
 	}
