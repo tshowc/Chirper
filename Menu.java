@@ -166,6 +166,11 @@ public class Menu
 		//Print logo
 		printLogo();
 		
+		//Print title
+		System.out.println("----------------------------------------------");
+		System.out.println("                  WELCOME                     ");
+		System.out.println("----------------------------------------------\n");
+	
 		//Print message and options
 		System.out.println("Welcome! Would you like to Login or Register?");
 		System.out.println("L: Login");
@@ -174,6 +179,42 @@ public class Menu
 	
 		//Get user input
 		return getInput();
+	}
+
+	public char displayLoginMenu()
+	{
+		//Create new scanner
+		Scanner in = new Scanner(System.in);
+		
+		//Print title
+		System.out.println("----------------------------------------------");
+		System.out.println("                   LOGIN                      ");
+		System.out.println("----------------------------------------------");
+			
+		//Print options
+		//System.out.print("Username: ");
+		//String userName = in.next();
+		//NEED TO DOUBLE CHECK PASSWORD
+		//System.out.print("Password: ");
+		//String password1 = in.next();
+	}
+
+	public char displayRegisterMenu()
+	{
+		//Print title
+		System.out.println("----------------------------------------------");
+		System.out.println("                 REGISTER                     ");
+		System.out.println("----------------------------------------------");
+		
+		//Print options
+		//NEED TO CHECK IF USERNAME IS ALREADY TAKEN
+		//System.out.print("Username: ");
+		//String userName = in.next();
+		//NEED TO DOUBLE CHECK PASSWORD
+		//System.out.print("Password: ");
+		//String password1 = in.next();
+		//System.out.print("Please verify password: ");
+		//String password2 = in.next();
 	}
 
 	/**
