@@ -1,2 +1,2 @@
-HermitCPSC330
+ChirperCPSC330
 =============

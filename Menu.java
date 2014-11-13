@@ -19,6 +19,7 @@ public class Menu
 	 * displayMain class.
 	 * Displays the main menu and returns user input.
 	 * @return user input
+p
          */
 	public String displayMain()
 	{
@@ -51,11 +52,11 @@ public class Menu
 	 */	
 	public void printLogo()
 	{
-		System.out.println("	 _____ _   _                   .-.        ");
-		System.out.println("    |     | |_|_|___ ___ ___ ___  /'v'|       ");
-		System.out.println("    |   --|   | |  _| . | -_|  _|(/   |)      ");
+		System.out.println("	 _____ _   _                   .-.                ");
+		System.out.println("    |     | |_|_|___ ___ ___ ___  /'v'|               ");
+		System.out.println("    |   --|   | |  _| . | -_|  _|(/   |)              ");
 		System.out.println(" 	|_____|_|_|_|_| |  _|___|_|===="+'"'+'='+"===<    ");
-                System.out.println("                    |_|            |_|      \n");
+                System.out.println("                    |_|            |_|              \n");
 	}
 	
 	/**
@@ -112,6 +113,25 @@ public class Menu
 		//IF PREVIOUS PAGE
 		System.out.println("P: Previos Page");
 		System.out.println("S: Select Post");
+		System.out.println("B: Back");
+
+		//Get input
+		return getInput();
+	}
+
+	/**
+	 * displayChirpMenu method.
+	 * Displays the menu for selecting a chirp.
+	 * @return user input
+	 */
+	public String displayChirpMenu()
+	{
+		//Chirp displayed above menu
+		//Print options
+		System.out.println("L: Like/Unlike");
+		System.out.println("R: Retweet");
+		//IF IT'S THEIR OWN CHIRP
+		System.out.println("D: Delete Chirp"); 
 		System.out.println("B: Back");
 
 		//Get input
