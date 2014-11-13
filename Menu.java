@@ -19,7 +19,6 @@ public class Menu
 	 * displayMain class.
 	 * Displays the main menu and returns user input.
 	 * @return user input
-p
          */
 	public char displayMain()
 	{
@@ -56,7 +55,7 @@ p
 		System.out.println("     _____ _   _                   .-.                ");
 		System.out.println("    |     | |_|_|___ ___ ___ ___  /'v'|               ");
 		System.out.println("    |   --|   | |  _| . | -_|  _|(/   |)              ");
-		System.out.println("    |_____|_|_|_|_| |  _|___|_|===="+'"'+'='+"===<    ");
+		System.out.println("    |_____|_|_|_|_| |  _|___|_|===="+'"'+"="+'"'+"===<    ");
                 System.out.println("                    |_|            |_|              \n");
 	}
 	
@@ -87,9 +86,10 @@ p
 	 */
 	public char getInput()
 	{
-		//declare Scanner object
+		//declare variables 
 		Scanner in = new Scanner(System.in);
-		
+		boolean valid = false;		
+
 		//Get input
 		System.out.print("> ");
 		char userInput = in.next().charAt(0);
@@ -130,7 +130,7 @@ p
 		//Chirp displayed above menu
 		//Print options
 		System.out.println("L: Like/Unlike");
-		System.out.println("R: Retweet");
+		System.out.println("R: Rechirp");
 		//IF IT'S THEIR OWN CHIRP
 		System.out.println("D: Delete Chirp"); 
 		System.out.println("B: Back");
