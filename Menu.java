@@ -27,11 +27,11 @@ public class Menu
 
 		//Print title
 		System.out.println("----------------------------------------------");
-		System.out.println("                     MENU                     ");
-		System.out.println("----------------------------------------------");
+		System.out.println("                 MAIN  MENU                   ");
+		System.out.println("----------------------------------------------\n");
                 
 		//Print options
-		System.out.println("\nPlease select an option:");
+		System.out.println("Please select an option:");
 		System.out.println("V: View Profile");
 		System.out.println("E: Edit Profile");
 		System.out.println("S: Search");
@@ -42,7 +42,17 @@ public class Menu
 		System.out.println("Q: Quit\n");
 
 		//Get user input
-		return getInput();
+		boolean valid = true;
+		do {
+			char input = getInput();
+			//vvv this part down here looks pretty gross. Let me know if there's a better way to check for a vaid character.
+			if (input == 'V' || input == 'E' || input == 'S' || input == 'T' || input == 'F' || input == 'M' || input == 'D' || input ==  'Q'input)
+			{
+				return input;
+			}
+			else
+				System.out.println("Please enter a valid character.");
+		} while (!valid)
 	}
 
 	/**
@@ -69,11 +79,11 @@ public class Menu
 		//Print title
 		System.out.println("----------------------------------------------");
 		System.out.println("                    SEARCH	                  ");
-		System.out.println("----------------------------------------------");
+		System.out.println("----------------------------------------------\n");
 
 		//Print options
-		System.out.println("- To search for a user, add an @ to the/nbeginning of the query.");
-		System.out.println("- To search for a tag, add a # to the beginning/nof the query.");
+		System.out.println("- To search for a user, add an @ to the\nbeginning of the query.");
+		System.out.println("- To search for a tag, add a # to the beginning\nof the query.\n");
 		
 		//Get user input
 		return getInput();
@@ -136,6 +146,20 @@ public class Menu
 		System.out.println("B: Back");
 
 		//Get input
+		return getInput();
+	}
+
+	public char displayLoginMenu()
+	{
+		//Print logo
+		printLogo();
+		
+		//Print message and options
+		System.out.println("Welcome! Would you like to Login or Register?");
+		System.out.println("L: Login");
+		System.out.println("R: Register\n");
+
+		//Get user input
 		return getInput();
 	}
 }
