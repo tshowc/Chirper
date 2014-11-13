@@ -181,7 +181,7 @@ public class Menu
 		return getInput();
 	}
 
-	public char displayLoginMenu()
+	public void displayLoginMenu()
 	{
 		//Create new scanner
 		Scanner in = new Scanner(System.in);
@@ -199,7 +199,7 @@ public class Menu
 		//String password1 = in.next();
 	}
 
-	public char displayRegisterMenu()
+	public void displayRegisterMenu()
 	{
 		//Print title
 		System.out.println("----------------------------------------------");
