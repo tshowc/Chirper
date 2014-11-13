@@ -11,36 +11,40 @@ public class Query {
 	}
 
 	
-	public boolean QueryAdd(){
+	public boolean QueryAdd(char type){
 
-		try{	
+		switch(type){
+			case "addUser": 
 
-		cmain.open();
-
-		statement = cmain.conn.prepareStatement("INSERT INTO ChirpUser VALUES(?,?)");
-
-		statement.setString(1, "Jim");
-		statement.setString(2, "Jen");
-		
-		boolean b = statement.execute();
-
-		if(b==true) System.out.println("One record inserted");
-		} catch(SQLException sqlEx) {
-			sqlEx.printStackTrace();
-			System.exit(1);
-		}/*  catch(ClassNotFoundException clsNotFoundEx){
-			clsNotFoundEx.printStackTrace();
-			System.exit(1);
-		 }*/ finally{
-			try{
-				statement.close();
-				cmain.close();
-			} catch(Exception e){
-				System.exit(1);
-			}		
+			try{	
+	
+			cmain.open();
+	
+			statement = cmain.conn.prepareStatement("INSERT INTO ChirpUser VALUES(?,?)");
+	
+			statement.setString(1, "Jim");
+			statement.setString(2, "Jen");
 			
-		}
-		return true;
+			boolean b = statement.execute();
+	
+			if(b==true) System.out.println("One record inserted");
+			} catch(SQLException sqlEx) {
+				sqlEx.printStackTrace();
+				System.exit(1);
+			}/*  catch(ClassNotFoundException clsNotFoundEx){
+				clsNotFoundEx.printStackTrace();
+				System.exit(1);
+			 }*/ finally{
+				try{
+					statement.close();
+					cmain.close();
+				} catch(Exception e){
+					System.exit(1);
+				}		
+					
+			}
+			return true;
+	}
 	}
 
 	public boolean QueryDelete(char type){
