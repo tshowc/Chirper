@@ -5,7 +5,7 @@ import java.util.*;
 public class Query {
 
 	Query(){
-
+		
 		statement = null;
 		cmain = new ChirperMain();
 	}
@@ -19,13 +19,15 @@ public class Query {
 				cmain.open();
 		
 				statement = cmain.conn.prepareStatement("INSERT INTO ChirpUser VALUES(?,?)");
-		
-				statement.setString(1, "Jim");
-				statement.setString(2, "Jen");
-				
+				System.out.print("enter desired Username: ");
+				String uname = in.next();
+				System.out.print("enter desired Password: ");
+				String pword = in.next();
+				statement.setString(1, uname);
+				statement.setString(2, pword);	
 				boolean b = statement.execute();
 		
-				if(b==true) System.out.println("One record inserted");
+				if(b==true) System.out.println("Congratulations! You have made a Chirper account");
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
 					System.exit(1);
@@ -86,5 +88,7 @@ public class Query {
 	
 	protected ChirperMain cmain;
 	
+	Scanner in = new Scanner(System.in);
+
 
 }
