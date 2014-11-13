@@ -76,8 +76,7 @@ public class Menu
 		System.out.println("- To search for a tag, add a # to the beginning/nof the query.");
 		
 		//Get user input
-		char input = getInput();
-		if (input 
+		return getInput();
 	}
 	
 	/**

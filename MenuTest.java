@@ -6,7 +6,7 @@ public class MenuTest
 		Menu test = new Menu();
 
 		//display main menu
-		String output = test.displayMain();
+		char output = test.displayMain();
 		System.out.println(output);
 	}
 }
