@@ -103,7 +103,8 @@ public class Menu
 	 * IDENTIFY AN AVAILABLE NEXT PAGE OR AVAILABLE PREVIOUS PAGE
 	 * @return user input
 	 */
-	public String displayFeedMenu()
+
+	public String displayFeedMenu() 
 	{
 		//Print options
 		//IF NEXT PAGE
