@@ -20,7 +20,7 @@ public class Menu
 	 * Displays the main menu and returns user input.
 	 * @return user input
          */
-	public String displayMain()
+	public char displayMain()
 	{
 		//Print logo
 		printLogo();
@@ -64,7 +64,7 @@ public class Menu
 	 * Displays the search menu and returns the user input.
 	 * @return user input
 	 */
-	public String displaySearchMenu()
+	public char displaySearchMenu()
 	{
 		//Print title
 		System.out.println("----------------------------------------------");
@@ -85,7 +85,7 @@ public class Menu
 	 * Gets the user's input on a menu. 
 	 * @return user input
 	 */
-	public String getInput()
+	public char getInput()
 	{
 		//declare variables 
 		Scanner in = new Scanner(System.in);
@@ -93,7 +93,7 @@ public class Menu
 
 		//Get input
 		System.out.print("> ");
-		String userInput = in.next();
+		char userInput = in.next().charAt(0);
 		return userInput;
 	}
 
@@ -107,7 +107,7 @@ public class Menu
 	 * @return user input
 	 */
 
-	public String displayFeedMenu() 
+	public char displayFeedMenu() 
 	{
 		//Print options
 		//IF NEXT PAGE
@@ -126,7 +126,7 @@ public class Menu
 	 * Displays the menu for selecting a chirp.
 	 * @return user input
 	 */
-	public String displayChirpMenu()
+	public char displayChirpMenu()
 	{
 		//Chirp displayed above menu
 		//Print options

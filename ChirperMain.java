@@ -11,10 +11,12 @@ public class ChirperMain {
 	public static void main(String[] argv) {
 		ChirperMain cmain = new ChirperMain();
 		Query q = new Query();
+		Menu m = new Menu();
+		char type = m.displayMain();
 	//	cmain.open();	
 	//	cmain.run(cmain);
 	//	cmain.close();
-		q.QueryAdd();
+		q.QueryAdd(type);
 	
 	}
 	

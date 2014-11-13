@@ -41,10 +41,10 @@ public class Query {
 					}		
 						
 				}
-				return true;
+
 			
 			break;
-			case 'T':
+		/*	case 'T':
 			
 			break;
 			case 'E':
@@ -58,11 +58,11 @@ public class Query {
 			break;
 			//case 'R':
 
-			//break;
+			//break;*/
 			default:
 				System.out.println("Not a valid selection, please try again");	
 		}
-		
+	return true;	
 	}
 
 	public boolean QueryDelete(char type){
