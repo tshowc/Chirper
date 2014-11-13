@@ -46,13 +46,17 @@ public class Menu
 		do {
 			char input = getInput();
 			//vvv this part down here looks pretty gross. Let me know if there's a better way to check for a vaid character.
-			if (input == 'V' || input == 'E' || input == 'S' || input == 'T' || input == 'F' || input == 'M' || input == 'D' || input ==  'Q'input)
+			//Other possibilties: switch statements? Exceptions?
+			if ((input == 'V') || (input == 'E') || (input == 'S') || (input == 'T') || (input == 'F') || (input == 'M') || (input == 'D') || (input ==  'Q'))
 			{
 				return input;
 			}
 			else
 				System.out.println("Please enter a valid character.");
-		} while (!valid)
+		} while (!valid);
+		
+		//??
+		return 0;
 	}
 
 	/**
@@ -103,6 +107,7 @@ public class Menu
 		//Get input
 		System.out.print("> ");
 		char userInput = in.next().charAt(0);
+		userInput = Character.toUpperCase(userInput);
 		return userInput;
 	}
 
@@ -116,13 +121,15 @@ public class Menu
 	 * @return user input
 	 */
 
-	public char displayFeedMenu() 
+	public char displayFeedMenu(int currentPage, int totalPages) 
 	{
 		//Print options
 		//IF NEXT PAGE
-		System.out.println("N: Next Page");
+		if (currentPage < totalPages)
+			System.out.println("N: Next Page");
 		//IF PREVIOUS PAGE
-		System.out.println("P: Previos Page");
+		if (currentPage != 0)
+			System.out.println("P: Previos Page");
 		System.out.println("S: Select Post");
 		System.out.println("B: Back");
 
@@ -177,7 +184,7 @@ public class Menu
 	{
 		//Print Title
 		System.out.println("---------------------------------------------");
-		System.out.println("                                             ");
+		System.out.println("                 EDIT PROFILE                ");
 		System.out.println("---------------------------------------------\n");
 		
 		//Print message and options
