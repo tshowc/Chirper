@@ -148,7 +148,7 @@ public class Menu
 		//Print options
 		System.out.println("L: Like/Unlike");
 		System.out.println("R: Rechirp");
-		//IF IT'S THEIR OWN CHIRP
+		//IF IT'S THEIR OWN CHIRP (need an if statement)
 		System.out.println("D: Delete Chirp"); 
 		System.out.println("B: Back");
 
@@ -161,7 +161,7 @@ public class Menu
 	 * Displays the login or register menu.
 	 * @return user input
 	 */
-	public char displayLoginMenu()
+	public char displayWelcomeMenu()
 	{
 		//Print logo
 		printLogo();
