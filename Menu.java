@@ -19,7 +19,6 @@ public class Menu
 	 * displayMain class.
 	 * Displays the main menu and returns user input.
 	 * @return user input
-p
          */
 	public String displayMain()
 	{
@@ -77,7 +76,8 @@ p
 		System.out.println("- To search for a tag, add a # to the beginning/nof the query.");
 		
 		//Get user input
-		return getInput();
+		char input = getInput();
+		if (input 
 	}
 	
 	/**
@@ -87,9 +87,10 @@ p
 	 */
 	public String getInput()
 	{
-		//declare Scanner object
+		//declare variables 
 		Scanner in = new Scanner(System.in);
-		
+		boolean valid = false;		
+
 		//Get input
 		System.out.print("> ");
 		String userInput = in.next();
@@ -130,7 +131,7 @@ p
 		//Chirp displayed above menu
 		//Print options
 		System.out.println("L: Like/Unlike");
-		System.out.println("R: Retweet");
+		System.out.println("R: Rechirp");
 		//IF IT'S THEIR OWN CHIRP
 		System.out.println("D: Delete Chirp"); 
 		System.out.println("B: Back");
