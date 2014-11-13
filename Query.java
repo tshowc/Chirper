@@ -19,9 +19,9 @@ public class Query {
 				cmain.open();
 		
 				statement = cmain.conn.prepareStatement("INSERT INTO ChirpUser VALUES(?,?)");
-				System.out.print("enter desired Username: ");
+				System.out.print("Enter desired Username: ");
 				String uname = in.next();
-				System.out.print("enter desired Password: ");
+				System.out.print("Enter desired Password: ");
 				String pword = in.next();
 				statement.setString(1, uname);
 				statement.setString(2, pword);	

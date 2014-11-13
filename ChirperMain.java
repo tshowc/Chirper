@@ -8,15 +8,15 @@ import java.util.*;
 
 public class ChirperMain {
 
+
 	public static void main(String[] argv) {
 		ChirperMain cmain = new ChirperMain();
-		Query q = new Query();
-		Menu m = new Menu();
-		char type = m.displayMain();
+		Query query = new Query();
+		Menu menu = new Menu();
 	//	cmain.open();	
-	//	cmain.run(cmain);
+		cmain.run(query, menu);
 	//	cmain.close();
-		q.QueryAdd(type);
+	//	q.QueryAdd(type);
 	
 	}
 	
@@ -57,8 +57,9 @@ public class ChirperMain {
 	}
 
 
-	public void run(ChirperMain cmain){
-		String username;
+	public void run(Query query, Menu menu){	
+		char type = menu.displayWelcomeMenu();
+/*		String username;
 		String password;
 		char choice;
 
@@ -67,20 +68,17 @@ public class ChirperMain {
 		System.out.println("Would you like to login or register?");	
 		System.out.println("Enter R to register or L to login.");
 		System.out.println("To quit, enter Q.");
-		choice = Character.toUpperCase(in.next().charAt(0));
+		choice = Character.toUpperCase(in.next().charAt(0));*/
 
-		switch(choice){
+		switch(type){
 			case 'R': 
 				System.out.println("Welcome to Registration!");
-				System.out.println("Please enter Username: ");
-				username = in.next();
-				System.out.println("Please enter Password: ");
-				password = in.next();
+				query.QueryAdd(type);	
 				
 				
 			break;
 			case 'L':
-				do{
+		/*		do{
 				System.out.println("Please Login!");
 				System.out.println("Please enter Username: ");
 				username = in.next();
@@ -88,7 +86,7 @@ public class ChirperMain {
 				password = in.next();
 				}while(!cmain.login(username, password));
 
-				
+			*/	
 			break;
 			case 'Q': 
 			break;
@@ -96,7 +94,7 @@ public class ChirperMain {
 
 
 		}
-		}while(choice != 'Q');
+	//	}while(choice != 'Q'); 
 
 
 	}
