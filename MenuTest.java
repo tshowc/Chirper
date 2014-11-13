@@ -1,4 +1,4 @@
-public class MenuTester
+class MenuTester
 {
 	public static void main(String[] args)
 	{

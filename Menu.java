@@ -6,15 +6,13 @@ import java.util.Scanner;
  */
 public class Menu
 {
-	//DATA VALUES
-	protected Scanner in = new Scanner(System.in);
-
 	/**
-	 * Default Constructor
+	 * Default Constructor.
+	 * ANYTHING NEEDED IN THE CONSTRUCTOR?
 	 */
 	public Menu()
 	{
-		
+		//???????????????		
 	}
 
 	/**
@@ -25,11 +23,7 @@ public class Menu
 	public String displayMain()
 	{
 		//Print logo
-		System.out.println("	 _____ _   _                   .-.        ");
-		System.out.println("    |     | |_|_|___ ___ ___ ___  /'v'\       ");
-		System.out.println("    |   --|   | |  _| . | -_|  _|(/   \)      ");
-		System.out.println(" 	|_____|_|_|_|_| |  _|___|_|===="="===<    ");
-                System.out.println("                    |_|            |_|      \n");
+		printLogo();
 
 		//Print title
 		System.out.println("----------------------------------------------");
@@ -48,16 +42,79 @@ public class Menu
 		System.out.println("Q: Quit\n");
 
 		//Get user input
+		return getInput();
+	}
+
+	/**
+	 * printLogo class.
+	 * Prints the logo. 
+	 */	
+	public void printLogo()
+	{
+		System.out.println("	 _____ _   _                   .-.        ");
+		System.out.println("    |     | |_|_|___ ___ ___ ___  /'v'|       ");
+		System.out.println("    |   --|   | |  _| . | -_|  _|(/   |)      ");
+		System.out.println(" 	|_____|_|_|_|_| |  _|___|_|===="+'"'+'='+"===<    ");
+                System.out.println("                    |_|            |_|      \n");
+	}
+	
+	/**
+	 * displaySearchMenu method.
+	 * Displays the search menu and returns the user input.
+	 * @return user input
+	 */
+	public String displaySearchMenu()
+	{
+		//Print title
+		System.out.println("----------------------------------------------");
+		System.out.println("                    SEARCH	                  ");
+		System.out.println("----------------------------------------------");
+
+		//Print options
+		System.out.println("- To search for a user, add an @ to the/nbeginning of the query.");
+		System.out.println("- To search for a tag, add a # to the beginning/nof the query.");
+		
+		//Get user input
+		return getInput();
+	}
+	
+	/**
+	 * getInput method.
+	 * Gets the user's input on a menu. 
+	 * @return user input
+	 */
+	public String getInput()
+	{
+		//declare Scanner object
+		Scanner in = new Scanner(System.in);
+		
+		//Get input
 		System.out.print("> ");
 		String userInput = in.next();
 		return userInput;
 	}
 
 	/**
-	 * Displays the search menu
+	 * displayFeedMenu method.
+	 * Displays the menu at the bottom of the feed and returns the user input. Can
+	 * be used as a decoration for the main feed, viewing a user's profile, search 
+	 * results (positive or negative), etc.
+	 * MAY NEED TO TAKE IN PAGE NUMBERS AS AN INT; OTHERWISE NEED SOME METHOD TO
+	 * IDENTIFY AN AVAILABLE NEXT PAGE OR AVAILABLE PREVIOUS PAGE
+	 * @return user input
 	 */
-	public void displaySearch()
+
+	public String displayFeedMenu() 
 	{
-		
+		//Print options
+		//IF NEXT PAGE
+		System.out.println("N: Next Page");
+		//IF PREVIOUS PAGE
+		System.out.println("P: Previos Page");
+		System.out.println("S: Select Post");
+		System.out.println("B: Back");
+
+		//Get input
+		return getInput();
 	}
 }
