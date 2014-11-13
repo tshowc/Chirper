@@ -3,25 +3,24 @@
 *  Author: Terena Chao
 *  Author: Mary Clark
 */
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 public class ChirperMain {
 
 	public static void main(String[] argv) {
 		ChirperMain cmain = new ChirperMain();
-		cmain.open();
-		cmain.run(cmain);
-		cmain.close();
+		Query q = new Query();
+	//	cmain.open();	
+	//	cmain.run(cmain);
+	//	cmain.close();
+		q.QueryAdd();
 	
 	}
 	
 	public void open(){
 
 	System.out.println("-------- MySQL JDBC Connection Testing ------------");
-	
 	try {
 	Class.forName("com.mysql.jdbc.Driver");
 	 } catch (ClassNotFoundException e) {
@@ -134,7 +133,6 @@ public class ChirperMain {
 			System.out.println("Database cannot be closed, try again!");
 	}
 	}}
-	Connection conn;
+	public Connection conn;
 	Scanner in = new Scanner(System.in);
-
 }
