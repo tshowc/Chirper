@@ -12,7 +12,7 @@ public class Query {
 
 	
 	public boolean QueryAdd(){
-
+		
 		try{	
 
 		cmain.open();
