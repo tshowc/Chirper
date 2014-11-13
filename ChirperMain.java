@@ -6,12 +6,14 @@
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.*;
 
 public class ChirperMain {
 
 	public static void main(String[] argv) {
-		ChirperMain cmain = new ChirperMain();		
+		ChirperMain cmain = new ChirperMain();
 		cmain.open();
+		cmain.run(cmain);
 		cmain.close();
 	
 	}
@@ -52,6 +54,76 @@ public class ChirperMain {
 	}
 
 	}
+
+
+	public void run(ChirperMain cmain){
+		String username;
+		String password;
+		char choice;
+
+		do{
+
+		System.out.println("Would you like to login or register?");	
+		System.out.println("Enter R to register or L to login.");
+		System.out.println("To quit, enter Q.");
+		choice = Character.toUpperCase(in.next().charAt(0));
+
+		switch(choice){
+			case 'R': 
+				System.out.println("Welcome to Registration!");
+				System.out.println("Please enter Username: ");
+				username = in.next();
+				System.out.println("Please enter Password: ");
+				password = in.next();
+				
+				
+			break;
+			case 'L':
+				do{
+				System.out.println("Please Login!");
+				System.out.println("Please enter Username: ");
+				username = in.next();
+				System.out.println("Please enter Password: ");
+				password = in.next();
+				}while(!cmain.login(username, password));
+
+				
+			break;
+			case 'Q': 
+			break;
+			default: System.out.println("Invalid Character. Try Again.");
+
+
+		}
+		}while(choice != 'Q');
+
+
+	}
+
+
+	public void registr(String un, String pw){
+
+
+		//DATABASE STUFF
+
+
+
+	}
+
+
+	public boolean login(String un, String pw){
+
+		//DATABASE STUFF
+
+		return false;
+	}
+
+	
+	
+
+
+
+
 	
 	public void close(){
 	if(conn != null){
@@ -62,6 +134,7 @@ public class ChirperMain {
 			System.out.println("Database cannot be closed, try again!");
 	}
 	}}
-	public Connection conn;
+	Connection conn;
+	Scanner in = new Scanner(System.in);
 
 }
