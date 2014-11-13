@@ -149,6 +149,11 @@ public class Menu
 		return getInput();
 	}
 
+	/**
+	 * displayLoginmenu method.
+	 * Displays the login or register menu.
+	 * @return user input
+	 */
 	public char displayLoginMenu()
 	{
 		//Print logo
@@ -158,6 +163,30 @@ public class Menu
 		System.out.println("Welcome! Would you like to Login or Register?");
 		System.out.println("L: Login");
 		System.out.println("R: Register\n");
+		System.out.println("Q: Quit");
+	
+		//Get user input
+		return getInput();
+	}
+
+	/**
+	 * displayEditProfile method.
+	 * Displays the menu for editing a profile.
+	 */
+	public char displayEditProfile()
+	{
+		//Print Title
+		System.out.println("---------------------------------------------");
+		System.out.println("                                             ");
+		System.out.println("---------------------------------------------\n");
+		
+		//Print message and options
+		System.out.println("What would you like to edit?");
+		System.out.println("F: First Name");
+		System.out.println("L: Last Name");
+		System.out.println("A: Age");
+		System.out.println("D: Description");
+		System.out.println("B: Back");
 
 		//Get user input
 		return getInput();
