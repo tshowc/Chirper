@@ -55,7 +55,7 @@ public class Menu
 		System.out.println("     _____ _   _                   .-.                ");
 		System.out.println("    |     | |_|_|___ ___ ___ ___  /'v'|               ");
 		System.out.println("    |   --|   | |  _| . | -_|  _|(/   |)              ");
-		System.out.println("    |_____|_|_|_|_| |  _|___|_|===="+'"'+'='+"===<    ");
+		System.out.println("    |_____|_|_|_|_| |  _|___|_|===="+'"'+"="+'"'+"===<    ");
                 System.out.println("                    |_|            |_|              \n");
 	}
 	
