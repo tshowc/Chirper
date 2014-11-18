@@ -79,10 +79,12 @@ public class ChirperMain {
 					
 					
 				break;
-					case 'L':
+				case 'L':
 					menu.displayLoginMenu();
-					query.QuerySearch(type);
-						break;
+					if(query.QuerySearch(type)){
+						menu.displayMain();
+					}
+				break;
 				case 'Q': 
 				break;
 				default: System.out.println("Invalid Character. Try Again.");

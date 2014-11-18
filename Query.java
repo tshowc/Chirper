@@ -121,6 +121,8 @@ public class Query {
 
 	public boolean QuerySearch(char type){
 
+		boolean b = false;
+
 		switch(type){
 		
 		case 'L': //Login
@@ -147,6 +149,7 @@ public class Query {
 					if (unameUP.equals(usernameUP)&& pword.equals(password)){
 						flag = true;
 						System.out.println("Welcome to the System.");
+						b = true;
 						break;
 					}}
 					rs.close();
@@ -178,7 +181,7 @@ public class Query {
 
 
 
-		return true;
+		return b;
 	}
 
 	public boolean QueryPrint(char type){
