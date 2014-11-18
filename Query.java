@@ -41,6 +41,7 @@ public class Query {
 						statement1.setString(2, pword);
 						int entry = statement1.executeUpdate();
 						if (entry != 0) System.out.println("Account Created");
+						break;
 					}
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
@@ -50,7 +51,6 @@ public class Query {
 					System.exit(1);
 				 }*/ finally{
 					try{
-						statement.close();
 						cmain.close();
 					} catch(Exception e){
 						System.exit(1);
