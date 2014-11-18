@@ -49,6 +49,7 @@ public class Menu
 			//Other possibilties: switch statements? Exceptions?
 			if ((input == 'V') || (input == 'E') || (input == 'S') || (input == 'T') || (input == 'F') || (input == 'M') || (input == 'D') || (input ==  'Q'))
 			{
+				valid = true;
 				return input;
 			}
 			else
