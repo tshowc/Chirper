@@ -71,13 +71,14 @@ public class ChirperMain {
 		choice = Character.toUpperCase(in.next().charAt(0));*/
 
 		switch(type){
-			case 'R': 
-				System.out.println("Welcome to Registration!");
+			case 'R':
+				menu.displayRegisterMenu(); 
 				query.QueryAdd(type);	
 				
 				
 			break;
 			case 'L':
+				menu.displayLoginMenu();
 		/*		do{
 				System.out.println("Please Login!");
 				System.out.println("Please enter Username: ");

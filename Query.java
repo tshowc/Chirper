@@ -18,7 +18,7 @@ public class Query {
 		
 				cmain.open();
 		
-				statement = cmain.conn.prepareStatement("INSERT INTO ChirpUser VALUES(?,?)");
+				statement = cmain.conn.prepareStatement("INSERT INTO ChirpUser (username, password)  VALUES(?,?)");
 				System.out.print("Enter desired Username: ");
 				String uname = in.next();
 				System.out.print("Enter desired Password: ");
@@ -46,10 +46,40 @@ public class Query {
 
 			
 			break;
-		/*	case 'T':
+			case 'C':
 			
+				try{	
+		
+				cmain.open();
+		
+				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id)  VALUES(?, ?, ?, ?)");
+				System.out.print("Enter Chirp: ");
+				String Chirp = in.next();	
+				statement.setString(2, Chirp);
+				statement.setString(3, 0);
+				statement.setInt(4, 0);
+				statement.setInt(5, user_id);	
+				boolean b = statement.execute();
+		
+				if(b==true) System.out.println("Congratulations! You have made a Chirp");
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						statement.close();
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
+
 			break;
-			case 'E':
+		/*	case 'E':
 
 			break;
 			case 'S':
@@ -58,9 +88,9 @@ public class Query {
 			case 'L':
 
 			break;
-			//case 'R':
+			case 'R':
 
-			//break;*/
+			break;*/
 			default:
 				System.out.println("Not a valid selection, please try again");	
 		}
