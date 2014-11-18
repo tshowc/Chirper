@@ -2,7 +2,16 @@ import java.util.Scanner;
 
 /**
  * Menu class for group project. Displays a menu of choices for the user
- * to select. A method can be used to display each type of menu.
+ * to select. A method can be used to display each type of menu and the user can select
+ * options from this menu that will be returned as a character.
+ * 
+ * However, there are exceptions to this. The search menu will return a string object that
+ * is the user's search criteria. This must be taken into account when processing the 
+ * return types of these methods.
+ * 
+ * Some methods also need additional parameters to determine certain actions in the menu. For
+ * example, the menu for a feed requires that some input be given for the number of pages
+ * so the "Next page" option won't appear when there are no other pages.
  */
 public class Menu
 {
@@ -42,22 +51,22 @@ public class Menu
 		System.out.println("Q: Quit\n");
 
 		//Get user input
-		boolean valid = true;
+		boolean valid = false;
+		char input;
 		do {
-			char input = getInput();
+			input = getInput();
 			//vvv this part down here looks pretty gross. Let me know if there's a better way to check for a vaid character.
 			//Other possibilties: switch statements? Exceptions?
 			if ((input == 'V') || (input == 'E') || (input == 'S') || (input == 'T') || (input == 'F') || (input == 'M') || (input == 'D') || (input ==  'Q'))
 			{
 				valid = true;
-				return input;
 			}
 			else
 				System.out.println("Please enter a valid character.");
 		} while (!valid);
 		
-		//??
-		return 0;
+		//Return result
+		return input;
 	}
 
 	/**
@@ -77,9 +86,12 @@ public class Menu
 	/**
 	 * displaySearchMenu method.
 	 * Displays the search menu and returns the user input.
+	 * NOTE: Most methods return a primitive char, but this method returns a String object.
+	 * This is because the method is taking a search item; it is not selecting an item in 
+	 * a menu.
 	 * @return user input
 	 */
-	public char displaySearchMenu()
+	public String displaySearchMenu()
 	{
 		//Print title
 		System.out.println("----------------------------------------------");
@@ -89,9 +101,32 @@ public class Menu
 		//Print options
 		System.out.println("- To search for a user, add an @ to the\nbeginning of the query.");
 		System.out.println("- To search for a tag, add a # to the beginning\nof the query.\n");
-		
+		System.out.println("Please keep search query at one work (ex: #chirpExample, @usernameExample)");		
+
 		//Get user input
-		return getInput();
+		boolean valid = false;
+		String input;
+		Scanner in = new Scanner(System.in);
+		do {
+			System.out.print("> ");
+			input = in.next();
+			//Testing substring
+			//System.out.println(input.substring(0, 1));
+			if (input.substring(0, 1).equals( "#"))
+			{
+				valid = true;
+			}
+			else if (input.substring(0, 1).equals("@"))
+			{
+				valid = true;	
+			}
+			else
+			{
+				System.out.println("We encountered an error processing your search!");
+				System.out.println("Please ensure that your criteria complies with the search instructions.");
+			}
+		} while (!valid);
+		return input;
 	}
 	
 	/**
@@ -130,12 +165,35 @@ public class Menu
 			System.out.println("N: Next Page");
 		//IF PREVIOUS PAGE
 		if (currentPage != 0)
-			System.out.println("P: Previos Page");
+			System.out.println("P: Previous Page");
 		System.out.println("S: Select Post");
 		System.out.println("B: Back");
 
 		//Get input
-		return getInput();
+		char input;
+		boolean valid = false;
+		do {
+			input = getInput();
+			if ((input == 'N') && (currentPage >= totalPages))
+			{
+				System.out.println("Cannot go to next page!");	
+			}
+			else if ((input == 'P') && (currentPage == 0))
+			{
+				System.out.println("Cannot go to previous page!");
+			}
+			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B'))
+			{
+				valid = true;
+			}
+			else
+			{
+				System.out.println("Please enter a valid character.");
+			}
+		} while(!valid);
+
+		//Return result
+		return input;
 	}
 
 	/**
