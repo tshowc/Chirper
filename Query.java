@@ -28,8 +28,11 @@ public class Query {
 				ResultSet rs = statement.executeQuery("SELECT username FROM ChirpUser");
 				while (rs.next()){
 					String username = rs.getString("username");
+					//Checks CASE SENSITIVITY
+					String usernameUP = username.toUpperCase(); 
+					String unameUP = uname.toUpperCase();
 					
-					if (uname.equals(username)){
+					if (unameUP.equals(usernameUP)){
 						flag = true;
 						System.out.println("Username exist. Please try again.");
 						break;
@@ -137,7 +140,11 @@ public class Query {
 				while (rs.next()){
 					String username = rs.getString("username");
 					String password = rs.getString("password");
-					if (uname.equals(username)&& pword.equals(password)){
+
+					//Checks CASE SENSITIVITY OF USERNAME 
+					String usernameUP = username.toUpperCase();
+					String unameUP = uname.toUpperCase();
+					if (unameUP.equals(usernameUP)&& pword.equals(password)){
 						flag = true;
 						System.out.println("Welcome to the System.");
 						break;

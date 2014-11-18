@@ -58,45 +58,38 @@ public class ChirperMain {
 
 
 	public void run(Query query, Menu menu){	
-		char type = menu.displayWelcomeMenu();
-/*		String username;
-		String password;
-		char choice;
 
+		char type;
 		do{
-
-		System.out.println("Would you like to login or register?");	
-		System.out.println("Enter R to register or L to login.");
-		System.out.println("To quit, enter Q.");
-		choice = Character.toUpperCase(in.next().charAt(0));*/
-
-		switch(type){
-			case 'R':
-				menu.displayRegisterMenu(); 
-				query.QueryAdd(type);	
-				
-				
-			break;
-			case 'L':
-				menu.displayLoginMenu();
-				query.QuerySearch(type);
-		/*		do{
-				System.out.println("Please Login!");
-				System.out.println("Please enter Username: ");
-				username = in.next();
-				System.out.println("Please enter Password: ");
-				password = in.next();
-				}while(!cmain.login(username, password));
-
-			*/	
-			break;
-			case 'Q': 
-			break;
-			default: System.out.println("Invalid Character. Try Again.");
-
-
-		}
-	//	}while(choice != 'Q'); 
+			type = menu.displayWelcomeMenu();
+/*			String username;
+			String password;
+			char choice;
+	
+			do{
+	
+				System.out.println("Would you like to login or register?");	
+			System.out.println("Enter R to register or L to login.");
+			System.out.println("To quit, enter Q.");
+			choice = Character.toUpperCase(in.next().charAt(0));*/
+			switch(type){
+				case 'R':
+					menu.displayRegisterMenu(); 
+						query.QueryAdd(type);	
+					
+					
+				break;
+					case 'L':
+					menu.displayLoginMenu();
+					query.QuerySearch(type);
+						break;
+				case 'Q': 
+				break;
+				default: System.out.println("Invalid Character. Try Again.");
+			
+			
+			}
+		}while(type != 'Q'); 
 
 
 	}
