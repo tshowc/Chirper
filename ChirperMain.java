@@ -79,6 +79,7 @@ public class ChirperMain {
 			break;
 			case 'L':
 				menu.displayLoginMenu();
+				query.QuerySearch(type);
 		/*		do{
 				System.out.println("Please Login!");
 				System.out.println("Please enter Username: ");

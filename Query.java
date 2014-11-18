@@ -12,7 +12,7 @@ public class Query {
 	public boolean QueryAdd(char type){
 
 		switch(type){
-			case 'R': 
+			case 'R'://Register an account 
 				boolean flag = false;
 
 				try{	
@@ -60,7 +60,7 @@ public class Query {
 
 			
 			break;
-			case 'C':
+			case 'C'://Create a Chirp
 			
 				/*try{	
 		
@@ -93,16 +93,16 @@ public class Query {
 				}
 
 			break;
-			case 'E':
+			case 'E'://Edit Profile
 
 			break;
-			case 'S':
+			case 'S'://Add a Subscriber
 			
 			break;
-			case 'L':
+			case 'L'://Like a Chirp
 
 			break;
-			case 'R':
+			case 'P'://ReChirp
 
 			break;*/
 			default:
@@ -117,6 +117,59 @@ public class Query {
 	}
 
 	public boolean QuerySearch(char type){
+
+		switch(type){
+		
+		case 'L': //Login
+				
+			boolean flag = false;
+			try{	
+		
+				cmain.open();
+		
+				Statement statement = cmain.conn.createStatement();
+				PreparedStatement statement1; 
+				System.out.print("Enter Username: ");
+				String uname = in.next();
+				System.out.print("Enter Password: ");
+				String pword = in.next();
+				ResultSet rs = statement.executeQuery("SELECT username, password FROM ChirpUser");
+				while (rs.next()){
+					String username = rs.getString("username");
+					String password = rs.getString("password");
+					if (uname.equals(username)&& pword.equals(password)){
+						flag = true;
+						System.out.println("Welcome to the System.");
+						break;
+					}}
+					rs.close();
+					if(!flag){
+						System.out.println("Username and Password either not in the system or do not match. Please try again.");
+						break;
+					}
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
+		break;
+
+		default: 	
+			System.out.println("Not a valid selection, please try again");	
+	}
+
+
+
+
 
 		return true;
 	}
