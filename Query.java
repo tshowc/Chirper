@@ -13,21 +13,35 @@ public class Query {
 
 		switch(type){
 			case 'R': 
+				boolean flag = false;
 
 				try{	
 		
 				cmain.open();
 		
-				statement = cmain.conn.prepareStatement("INSERT INTO ChirpUser (username, password)  VALUES(?,?)");
+				Statement statement = cmain.conn.createStatement();
+				PreparedStatement statement1; 
 				System.out.print("Enter desired Username: ");
 				String uname = in.next();
 				System.out.print("Enter desired Password: ");
 				String pword = in.next();
-				statement.setString(1, uname);
-				statement.setString(2, pword);	
-				boolean b = statement.execute();
-		
-				if(b==true) System.out.println("Congratulations! You have made a Chirper account");
+				ResultSet rs = statement.executeQuery("SELECT username FROM ChirpUser");
+				while (rs.next()){
+					String username = rs.getString("username");
+					
+					if (uname.equals(username)){
+						flag = true;
+						System.out.println("Username exist. Please try again.");
+						break;
+					}}
+					rs.close();
+					if(!flag){
+						statement1 = cmain.conn.prepareStatement("INSERT INTO ChirpUser (username, password)  VALUES(?,?)");
+						statement1.setString(1, uname);
+						statement1.setString(2, pword);
+						int entry = statement1.executeUpdate();
+						if (entry != 0) System.out.println("Account Created");
+					}
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
 					System.exit(1);
@@ -48,7 +62,7 @@ public class Query {
 			break;
 			case 'C':
 			
-				try{	
+				/*try{	
 		
 				cmain.open();
 		
@@ -68,7 +82,7 @@ public class Query {
 				}/*  catch(ClassNotFoundException clsNotFoundEx){
 					clsNotFoundEx.printStackTrace();
 					System.exit(1);
-				 }*/ finally{
+				 } finally{
 					try{
 						statement.close();
 						cmain.close();
@@ -79,7 +93,7 @@ public class Query {
 				}
 
 			break;
-		/*	case 'E':
+			case 'E':
 
 			break;
 			case 'S':
