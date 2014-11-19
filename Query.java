@@ -18,6 +18,7 @@ public class Query {
 				try{	
 		
 				cmain.open();
+				menu.displayRegisterMenu();
 		
 				Statement statement = cmain.conn.createStatement();
 				PreparedStatement statement1; 
@@ -192,6 +193,8 @@ public class Query {
 	protected PreparedStatement statement;
 
 	protected Connection conn;
+	
+	protected Menu menu = new Menu();
 	
 	protected ChirperMain cmain;
 	
