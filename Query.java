@@ -46,16 +46,17 @@ public class Query {
 						int entry = statement1.executeUpdate();
 						System.out.print("Enter First Name: ");
 						String FN = in.next();
+						in.nextLine();
 						System.out.print("Enter Last Name: ");
 						String LN  = in.next();
+						in.nextLine();
 						System.out.print("Enter Age: ");
 						int age = in.nextInt();
+						in.nextLine();
 						String desc;
 						do{
 							System.out.println("Tell us about yourself! (Max. 140)");
-							in.nextLine();
 							desc = in.nextLine();
-							in.nextLine();
 						}while(desc.length() > 140);		
 						PreparedStatement statement2;
 						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (first_name, last_name, age, description) VALUES(?,?,?,?)");
@@ -89,15 +90,25 @@ public class Query {
 				try{	
 		
 				cmain.open();
-		
-				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id)  VALUES(?, ?, ?, ?)");
+				boolean bPrivate = false;
+				char input;
+				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id, private)  VALUES(?, ?, ?, ?, ?)");
 				System.out.println("Enter Chirp(Max 140): ");
 				String Chirp = in.nextLine();
-				in.nextLine();
 				statement.setString(1, Chirp);
 				statement.setInt(2, 0);
 				statement.setInt(3, 0);
-				statement.setInt(4,userID);	
+				statement.setInt(4,userID);
+				do{	
+					System.out.println("Do you want to set Chirp as private? (y/n) ");
+					input = in.next().charAt(0);
+					input = Character.toUpperCase(input);
+					in.nextLine();
+					System.out.print(input); 
+				}while((input != 'Y') && (input != 'N'));
+				if (input == 'Y')bPrivate = true;
+				else if (input == 'N') bPrivate = false;
+				statement.setBoolean(5, bPrivate);	
 				int  b = statement.executeUpdate();
 		
 				if(b > 0) System.out.println("Congratulations! You have made a Chirp");
@@ -147,6 +158,7 @@ public class Query {
 					case 'A':
 						System.out.print("Enter Age: ");
 						int age = in.nextInt();
+						in.nextLine();
 						statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET age = ? WHERE user_id = ?" );
 						statement2.setInt(1, age);
 						statement2.setInt(2, userID);
@@ -158,7 +170,6 @@ public class Query {
 						do{
 							System.out.println("Edit Description: ");
 							desc = in.nextLine();
-							in.nextLine();
 						}while(desc.length() > 140);		
 						statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET description = ? WHERE user_id = ?" );
 						statement2.setString(1, desc);
