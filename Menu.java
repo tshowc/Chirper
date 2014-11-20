@@ -248,8 +248,16 @@ public class Menu
 		System.out.println("Q: Quit");
 	
 		//Get user input
-		
-		return getInput();
+		boolean valid = false;
+		char input;
+		do {
+			input = getInput();
+			if ((input == 'L') || (input == 'R') || (input == 'Q'))
+				valid = true;
+			else
+				System.out.println("Please enter a valid character.");
+		} while (!valid);
+		return input;
 	}
 
 	public void displayLoginMenu()
