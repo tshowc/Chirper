@@ -157,7 +157,6 @@ public class Query {
 						String desc;
 						do{
 							System.out.println("Edit Description: ");
-							in.nextLine();
 							desc = in.nextLine();
 							in.nextLine();
 						}while(desc.length() > 140);		
