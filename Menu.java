@@ -242,8 +242,6 @@ public class Menu
 		System.out.println("----------------------------------------------\n");
 	
 		//Print message and options
-<<<<<<< HEAD
-=======
 		System.out.println("Welcome! Would you like to Login or Register?");
 		System.out.println("L: Login");
 		System.out.println("R: Register\n");
@@ -264,7 +262,6 @@ public class Menu
 
 	public void displayLoginMenu()
 	{
->>>>>>> 8156a3b0d12712404fbc05669beef431d974c88d
 		//Create new scanner
 		Scanner in = new Scanner(System.in);
 		
