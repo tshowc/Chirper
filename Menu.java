@@ -329,6 +329,8 @@ public class Menu
 			else
 				System.out.println("Please enter a valid character.");
 		} while (!valid);
+
+		//Return input
 		return input;
 	}
 }
