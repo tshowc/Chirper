@@ -201,7 +201,7 @@ public class Menu
 	 * Displays the menu for selecting a chirp.
 	 * @return user input
 	 */
-	public char displayChirpMenu()
+	public char displayChirpMenu(boolean isUserChirp)
 	{
 		//Chirp displayed above menu
 		//Print options
@@ -212,7 +212,18 @@ public class Menu
 		System.out.println("B: Back");
 
 		//Get input
-		return getInput();
+		char input;
+		boolean valid = false;
+		do {
+			input = getInput();
+			if ((input == 'D') && !isUserChirp)
+				System.out.print("You can't delete someone else's chirp!");
+			else if ((input == 'L') || (input == 'R') || (input == 'D') || (input == 'B'))
+				valid = true;
+			else 
+				System.out.println("Please enter a valid character.");
+		} while (!valid);
+		return input;
 	}
 
 	/**
@@ -237,6 +248,7 @@ public class Menu
 		System.out.println("Q: Quit");
 	
 		//Get user input
+		
 		return getInput();
 	}
 
@@ -302,7 +314,7 @@ public class Menu
 			input = getInput();
 			if ((input == 'F') || (input == 'L') || (input == 'A') || (input == 'D') || (input == 'B'))
 			{
-				System.out.println("Please enter a valid character");
+				System.out.println("Please enter a valid character.");
 			}
 			else
 				valid = true;
