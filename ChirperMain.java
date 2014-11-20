@@ -82,7 +82,10 @@ public class ChirperMain {
 				case 'L':
 					menu.displayLoginMenu();
 					if(query.QuerySearch(type)){
+						do{
 						menu.displayMain();
+						
+				
 					}
 				break;
 				case 'Q': 
