@@ -192,7 +192,7 @@ public class Menu
 			}
 		} while(!valid);
 
-		//Return result
+		//Return input
 		return input;
 	}
 
@@ -223,6 +223,8 @@ public class Menu
 			else 
 				System.out.println("Please enter a valid character.");
 		} while (!valid);
+
+		//Return input
 		return input;
 	}
 
@@ -247,7 +249,7 @@ public class Menu
 		System.out.println("R: Register\n");
 		System.out.println("Q: Quit");
 	
-		//Get user input
+		//Get input
 		boolean valid = false;
 		char input;
 		do {
@@ -257,6 +259,8 @@ public class Menu
 			else
 				System.out.println("Please enter a valid character.");
 		} while (!valid);
+
+		//Return input
 		return input;
 	}
 
@@ -316,6 +320,15 @@ public class Menu
 		System.out.println("B: Back");
 
 		//Get user input
-		return getInput();
+		boolean valid = false;
+		char input;
+		do {
+			input = getInput();
+			if ((input == 'F') || (input == 'L') || (input == 'A') || (input == 'D') || (input == 'B'))
+				valid = true;
+			else
+				System.out.println("Please enter a valid character.");
+		} while (!valid);
+		return input;
 	}
 }
