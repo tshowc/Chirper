@@ -242,6 +242,29 @@ public class Menu
 		System.out.println("----------------------------------------------\n");
 	
 		//Print message and options
+<<<<<<< HEAD
+=======
+		System.out.println("Welcome! Would you like to Login or Register?");
+		System.out.println("L: Login");
+		System.out.println("R: Register\n");
+		System.out.println("Q: Quit");
+	
+		//Get user input
+		boolean valid = false;
+		char input;
+		do {
+			input = getInput();
+			if ((input == 'L') || (input == 'R') || (input == 'Q'))
+				valid = true;
+			else
+				System.out.println("Please enter a valid character.");
+		} while (!valid);
+		return input;
+	}
+
+	public void displayLoginMenu()
+	{
+>>>>>>> 8156a3b0d12712404fbc05669beef431d974c88d
 		//Create new scanner
 		Scanner in = new Scanner(System.in);
 		
