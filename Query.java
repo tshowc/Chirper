@@ -104,7 +104,6 @@ public class Query {
 					input = in.next().charAt(0);
 					input = Character.toUpperCase(input);
 					in.nextLine();
-					System.out.print(input); 
 				}while((input != 'Y') && (input != 'N'));
 				if (input == 'Y')bPrivate = true;
 				else if (input == 'N') bPrivate = false;
@@ -270,6 +269,45 @@ public class Query {
 					}		
 						
 				}
+		break;
+		case 'V':
+			try{	
+		
+				cmain.open();
+		
+				Statement statement = cmain.conn.createStatement();
+				ResultSet rs = statement.executeQuery("SELECT first_name, last_name, age, description, num_subscribers FROM ChirpUserProfile WHERE user_id =" +userID);
+				//int usrID = rs.getInt("user_id");
+				
+				if (rs.next()){
+					String FN = rs.getString(1);
+					String LN = rs.getString(2);
+					int age = rs.getInt(3);
+					String desc = rs.getString(4);
+					int numSub = rs.getInt(5);
+
+					System.out.println("First Name: " + FN);
+					System.out.println("Last Name: " + LN);
+					System.out.println("Age: " + age);
+					System.out.println("Description: " + desc);
+					System.out.println("Number of Subscribers: " + numSub);	
+				}			
+				rs.close();
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
+				
 		break;
 
 		default: 	

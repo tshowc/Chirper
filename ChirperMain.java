@@ -92,12 +92,15 @@ public class ChirperMain {
 							query.QueryAdd(choice);
 								
 						}
+						else if (choice == 'V'){
+							query.QuerySearch(choice);
+						}
 						}while(choice != 'L');
 						
 				
 					}
 				break;
-				case 'Q': 
+				case 'Q': //Do nothing 
 				break;
 				default: System.out.println("Invalid Character. Try Again.");
 			
