@@ -44,6 +44,25 @@ public class Query {
 						statement1.setString(1, uname);
 						statement1.setString(2, pword);
 						int entry = statement1.executeUpdate();
+						System.out.print("Enter First Name: ");
+						String FN = in.next();
+						System.out.print("Enter Last Name: ");
+						String LN  = in.next();
+						System.out.print("Enter Age: ");
+						int age = in.nextInt();
+						String desc;
+						do{
+							System.out.println("Tell us about yourself! (Max. 140)");
+							String consume = in.nextLine();
+							desc = in.nextLine();
+						}while(desc.length() > 140);		
+						PreparedStatement statement2;
+						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (first_name, last_name, age, description) VALUES(?,?,?,?)");
+						statement2.setString(1, FN);
+						statement2.setString(2, LN);
+						statement2.setInt(3, age);
+						statement2.setString(4, desc);
+						statement2.execute(); 
 						if (entry != 0) System.out.println("Account Created");
 						break;
 					}
@@ -66,17 +85,17 @@ public class Query {
 			break;
 			case 'C'://Create a Chirp
 			
-				/*try{	
+				try{	
 		
 				cmain.open();
 		
 				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id)  VALUES(?, ?, ?, ?)");
-				System.out.print("Enter Chirp: ");
+				System.out.print("Enter Chirp(Max 140): ");
 				String Chirp = in.next();	
 				statement.setString(2, Chirp);
-				statement.setString(3, 0);
+				statement.setInt(3, 0);
 				statement.setInt(4, 0);
-				statement.setInt(5, user_id);	
+				statement.setInt(5,userID);	
 				boolean b = statement.execute();
 		
 				if(b==true) System.out.println("Congratulations! You have made a Chirp");
@@ -86,7 +105,7 @@ public class Query {
 				}/*  catch(ClassNotFoundException clsNotFoundEx){
 					clsNotFoundEx.printStackTrace();
 					System.exit(1);
-				 } finally{
+				 }*/ finally{
 					try{
 						statement.close();
 						cmain.close();
@@ -108,7 +127,7 @@ public class Query {
 			break;
 			case 'P'://ReChirp
 
-			break;*/
+			break;
 			default:
 				System.out.println("Not a valid selection, please try again");	
 		}
@@ -139,8 +158,9 @@ public class Query {
 				String uname = in.next();
 				System.out.print("Enter Password: ");
 				String pword = in.next();
-				ResultSet rs = statement.executeQuery("SELECT username, password FROM ChirpUser");
+				ResultSet rs = statement.executeQuery("SELECT user_id, username, password FROM ChirpUser");
 				while (rs.next()){
+					userID = rs.getInt("user_id");
 					String username = rs.getString("username");
 					String password = rs.getString("password");
 
@@ -189,6 +209,8 @@ public class Query {
 	
 		return true;
 	}
+	
+	private int userID;
 
 	protected PreparedStatement statement;
 
