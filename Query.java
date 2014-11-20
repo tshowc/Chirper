@@ -129,24 +129,27 @@ public class Query {
 					case 'F':
 						System.out.print("Enter First Name: ");
 						String FN = in.next();
-						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (first_name) VALUES(?) WHERE user_id =" + userID );
+						statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET first_name = ? WHERE user_id = ?" );
 						statement2.setString(1, FN);
+						statement2.setInt(2, userID);
 						statement2.execute(); 
 						if (entry != 0) System.out.println("Profile Updated!");
 					break;
 					case 'L':
 						System.out.print("Enter Last Name: ");
 						String LN  = in.next();
-						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (last_name) VALUES(?) WHERE user_id =" + userID );
+						statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET last_name = ? WHERE user_id = ?" );
 						statement2.setString(1, LN);
+						statement2.setInt(2, userID);
 						statement2.execute(); 
 						if (entry != 0) System.out.println("Profile Updated!");
 					break;
 					case 'A':
 						System.out.print("Enter Age: ");
 						int age = in.nextInt();
-						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (age) VALUES(?) WHERE user_id =" + userID );
+						statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET age = ? WHERE user_id = ?" );
 						statement2.setInt(1, age);
+						statement2.setInt(2, userID);
 						statement2.execute(); 
 						if (entry != 0) System.out.println("Profile Updated");
 					break;
@@ -158,8 +161,9 @@ public class Query {
 							desc = in.nextLine();
 							in.nextLine();
 						}while(desc.length() > 140);		
-						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (description) VALUES(?) WHERE user_id=" + userID );
+						statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET description = ? WHERE user_id = ?" );
 						statement2.setString(1, desc);
+						statement2.setInt(2, userID);
 						statement2.execute(); 
 						if (entry != 0) System.out.println("Profile Updated");
 					break;
