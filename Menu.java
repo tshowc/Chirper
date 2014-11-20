@@ -46,9 +46,9 @@ public class Menu
 		System.out.println("S: Search");
 		System.out.println("T: Trending");
 		System.out.println("F: Return to Feed");
-		System.out.println("M: Make a Post");
-		System.out.println("D: Delete a Post");
-		System.out.println("Q: Quit\n");
+		System.out.println("M: Make a Chirp");
+		System.out.println("D: Delete a Chirp");
+		System.out.println("L: Logout\n");
 
 		//Get user input
 		boolean valid = false;
@@ -57,7 +57,7 @@ public class Menu
 			input = getInput();
 			//vvv this part down here looks pretty gross. Let me know if there's a better way to check for a vaid character.
 			//Other possibilties: switch statements? Exceptions?
-			if ((input == 'V') || (input == 'E') || (input == 'S') || (input == 'T') || (input == 'F') || (input == 'M') || (input == 'D') || (input ==  'Q'))
+			if ((input == 'V') || (input == 'E') || (input == 'S') || (input == 'T') || (input == 'F') || (input == 'M') || (input == 'D') || (input ==  'L'))
 			{
 				valid = true;
 			}
@@ -296,6 +296,17 @@ public class Menu
 		System.out.println("B: Back");
 
 		//Get user input
-		return getInput();
+		boolean valid = false;
+		char input;
+		do {
+			input = getInput();
+			if ((input == 'F') || (input == 'L') || (input == 'A') || (input == 'D') || (input == 'B'))
+			{
+				System.out.println("Please enter a valid character");
+			}
+			else
+				valid = true;
+		} while (!valid);
+		return input;
 	}
 }
