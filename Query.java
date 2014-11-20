@@ -53,8 +53,9 @@ public class Query {
 						String desc;
 						do{
 							System.out.println("Tell us about yourself! (Max. 140)");
-							String consume = in.nextLine();
+							in.nextLine();
 							desc = in.nextLine();
+							in.nextLine();
 						}while(desc.length() > 140);		
 						PreparedStatement statement2;
 						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (first_name, last_name, age, description) VALUES(?,?,?,?)");
@@ -83,22 +84,23 @@ public class Query {
 
 			
 			break;
-			case 'C'://Create a Chirp
+			case 'M'://Create a Chirp
 			
 				try{	
 		
 				cmain.open();
 		
 				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id)  VALUES(?, ?, ?, ?)");
-				System.out.print("Enter Chirp(Max 140): ");
-				String Chirp = in.next();	
-				statement.setString(2, Chirp);
+				System.out.println("Enter Chirp(Max 140): ");
+				String Chirp = in.nextLine();
+				in.nextLine();
+				statement.setString(1, Chirp);
+				statement.setInt(2, 0);
 				statement.setInt(3, 0);
-				statement.setInt(4, 0);
-				statement.setInt(5,userID);	
-				boolean b = statement.execute();
+				statement.setInt(4,userID);	
+				int  b = statement.executeUpdate();
 		
-				if(b==true) System.out.println("Congratulations! You have made a Chirp");
+				if(b > 0) System.out.println("Congratulations! You have made a Chirp");
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
 					System.exit(1);
@@ -117,7 +119,68 @@ public class Query {
 
 			break;
 			case 'E'://Edit Profile
-
+				
+				char choice = menu.displayEditProfile();	
+				try{	
+						cmain.open();
+						PreparedStatement statement2;
+						int entry = 0; 
+					switch (choice){
+					case 'F':
+						System.out.print("Enter First Name: ");
+						String FN = in.next();
+						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (first_name) VALUES(?) WHERE user_id =" + userID );
+						statement2.setString(1, FN);
+						statement2.execute(); 
+						if (entry != 0) System.out.println("Profile Updated!");
+					break;
+					case 'L':
+						System.out.print("Enter Last Name: ");
+						String LN  = in.next();
+						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (last_name) VALUES(?) WHERE user_id =" + userID );
+						statement2.setString(1, LN);
+						statement2.execute(); 
+						if (entry != 0) System.out.println("Profile Updated!");
+					break;
+					case 'A':
+						System.out.print("Enter Age: ");
+						int age = in.nextInt();
+						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (age) VALUES(?) WHERE user_id =" + userID );
+						statement2.setInt(1, age);
+						statement2.execute(); 
+						if (entry != 0) System.out.println("Profile Updated");
+					break;
+					case 'D':
+						String desc;
+						do{
+							System.out.println("Edit Description: ");
+							in.nextLine();
+							desc = in.nextLine();
+							in.nextLine();
+						}while(desc.length() > 140);		
+						statement2 = cmain.conn.prepareStatement("INSERT INTO ChirpUserProfile (description) VALUES(?) WHERE user_id=" + userID );
+						statement2.setString(1, desc);
+						statement2.execute(); 
+						if (entry != 0) System.out.println("Profile Updated");
+					break;
+					case 'B':
+					break;
+					default:
+					}
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
 			break;
 			case 'S'://Add a Subscriber
 			
@@ -170,6 +233,7 @@ public class Query {
 					if (unameUP.equals(usernameUP)&& pword.equals(password)){
 						flag = true;
 						System.out.println("Welcome to the System.");
+						in.nextLine();
 						b = true;
 						break;
 					}}

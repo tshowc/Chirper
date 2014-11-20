@@ -82,8 +82,17 @@ public class ChirperMain {
 				case 'L':
 					menu.displayLoginMenu();
 					if(query.QuerySearch(type)){
+						char choice;
 						do{
-						menu.displayMain();
+						choice = menu.displayMain();
+						if (choice == 'M'){
+							query.QueryAdd(choice);
+						}
+						else if (choice == 'E'){
+							query.QueryAdd(choice);
+								
+						}
+						}while(choice != 'L');
 						
 				
 					}
