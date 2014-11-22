@@ -49,6 +49,7 @@ public class Menu
 		System.out.println("M: Make a Chirp");
 		System.out.println("U: Subscribe to User");
 		System.out.println("D: Delete a Chirp");
+		System.out.println("K: Like a Chirp (TEST)");
 		System.out.println("L: Logout\n");
 
 		//Get user input
