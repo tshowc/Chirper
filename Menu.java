@@ -51,7 +51,6 @@ public class Menu
 		System.out.println("D: Delete a Chirp");
 		System.out.println("K: Like a Chirp");
 		System.out.println("P: Rechirp a Chirp");
-		System.out.println("H: Hashtag");
 		System.out.println("B: Reply to a Chirp");
 		System.out.println("L: Logout\n");
 
