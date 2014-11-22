@@ -196,6 +196,8 @@ public class Query {
 				}
 			break;
 			case 'S'://Add a Subscriber
+				System.out.println("Enter username of person you want to subscribe to: ");
+				String  
 			
 			break;
 			case 'L'://Like a Chirp
@@ -204,6 +206,7 @@ public class Query {
 			case 'P'://ReChirp
 
 			break;
+			case 'H'://Hashtag
 			default:
 				System.out.println("Not a valid selection, please try again");	
 		}
