@@ -47,6 +47,7 @@ public class Menu
 		System.out.println("T: Trending");
 		System.out.println("F: Return to Feed");
 		System.out.println("M: Make a Chirp");
+		System.out.println("U: Subscribe to User");
 		System.out.println("D: Delete a Chirp");
 		System.out.println("L: Logout\n");
 
@@ -57,7 +58,7 @@ public class Menu
 			input = getInput();
 			//vvv this part down here looks pretty gross. Let me know if there's a better way to check for a vaid character.
 			//Other possibilties: switch statements? Exceptions?
-			if ((input == 'V') || (input == 'E') || (input == 'S') || (input == 'T') || (input == 'F') || (input == 'M') || (input == 'D') || (input ==  'L'))
+			if ((input == 'V') || (input == 'E') || (input == 'S') || (input == 'T') || (input == 'F') || (input == 'M') || (input == 'D') || (input ==  'L') || (input == 'U'))
 			{
 				valid = true;
 			}
