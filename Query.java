@@ -195,9 +195,56 @@ public class Query {
 						
 				}
 			break;
-			case 'S'://Add a Subscriber
+			case 'U'://Add a Subscriber
 				System.out.println("Enter username of person you want to subscribe to: ");
-				String  
+				String subName = in.next();
+
+				try{	
+		
+				cmain.open();
+				menu.displayRegisterMenu();
+		
+				Statement statement = cmain.conn.createStatement();
+				PreparedStatement statement1; 
+				ResultSet rs = statement.executeQuery("SELECT user_id FROM ChirpUser WHERE username=" +subName);
+				if (rs.next()){
+					String subID = rs.getString("user_id");
+					statement1 = cmain.conn.prepareStatement("INSERT INTO Subscribe (user_id, subscribed_user_id) VALUES(?, ?)");
+					statement1.setString(1, userID);
+					statement1.setString(2, subID);
+					statement1.execute();
+				}
+				else{
+					System.out.println("User does not exist.");
+				}
+					
+				rs.close();
+				statement.close();
+				statement1.close();
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
+
+			
+			break;
+			case 'M'://Create a Chirp
+			
+				try{	
+		
+				cmain.open();
+				
+				  
 			
 			break;
 			case 'L'://Like a Chirp
