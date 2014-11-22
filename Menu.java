@@ -168,6 +168,7 @@ public class Menu
 		if (currentPage != 0)
 			System.out.println("P: Previous Page");
 		System.out.println("S: Select Post");
+		System.out.println("L: Like Post");
 		System.out.println("B: Back");
 
 		//Get input
