@@ -95,6 +95,18 @@ public class ChirperMain {
 						else if (choice == 'V'){
 							query.QuerySearch(choice);
 						}
+						else if (choice == 'U'){
+							query.QueryAdd(choice);
+						}
+						else if (choice == 'K'){
+							query.QueryAdd(choice);
+						}
+						else if (choice == 'P'){
+							query.QueryAdd(choice);
+						}
+						else if (choice == 'B'){
+							query.QueryAdd(choice);
+						}
 						}while(choice != 'L');
 						
 				
@@ -110,30 +122,6 @@ public class ChirperMain {
 
 
 	}
-
-
-	public void registr(String un, String pw){
-
-
-		//DATABASE STUFF
-
-
-
-	}
-
-
-	public boolean login(String un, String pw){
-
-		//DATABASE STUFF
-
-		return false;
-	}
-
-	
-	
-
-
-
 
 	
 	public void close(){

@@ -111,6 +111,7 @@ public class Query {
 				int  b = statement.executeUpdate();
 		
 				if(b > 0) System.out.println("Congratulations! You have made a Chirp");
+				Hashtag(Chirp);
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
 					System.exit(1);
@@ -202,16 +203,17 @@ public class Query {
 				try{	
 		
 				cmain.open();
-				menu.displayRegisterMenu();
-		
 				Statement statement = cmain.conn.createStatement();
-				PreparedStatement statement1; 
-				ResultSet rs = statement.executeQuery("SELECT user_id FROM ChirpUser WHERE username=" +subName);
+				PreparedStatement statement1;
+				PreparedStatement statement2;
+				statement2 = cmain.conn.prepareStatement("SELECT user_id FROM ChirpUser WHERE username = ? ");
+				statement2.setString (1, subName);
+				ResultSet rs = statement2.executeQuery();
 				if (rs.next()){
-					String subID = rs.getString("user_id");
+					int subID = rs.getInt("user_id");
 					statement1 = cmain.conn.prepareStatement("INSERT INTO Subscribe (user_id, subscribed_user_id) VALUES(?, ?)");
-					statement1.setString(1, userID);
-					statement1.setString(2, subID);
+					statement1.setInt(1, userID);
+					statement1.setInt(2, subID);
 					statement1.execute();
 				}
 				else{
@@ -220,7 +222,6 @@ public class Query {
 					
 				rs.close();
 				statement.close();
-				statement1.close();
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
 					System.exit(1);
@@ -238,22 +239,131 @@ public class Query {
 
 			
 			break;
-			case 'M'://Create a Chirp
-			
+			case 'K'://Like a Chirp
+				System.out.println("Please enter ChirpID: ");
+				int ChirpID = in.nextInt();
+				in.nextLine();
+
+				
 				try{	
 		
 				cmain.open();
+				PreparedStatement statement2;
+				statement2 = cmain.conn.prepareStatement("UPDATE Chirp SET num_likes = num_likes+1 WHERE chirp_id = ? ");
+				statement2.setInt (1, ChirpID);
+				statement2.execute();
+				statement2 = cmain.conn.prepareStatement("INSERT INTO Likes (chirp_id, new_user_id) VALUES(?, ?)");
+				statement2.setInt(1, ChirpID);
+				statement2.setInt(2, userID);
+				statement2.execute(); 
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
+
+
+			break;
+			case 'P'://ReChirp	
+				System.out.println("Please enter ChirpID: ");
+				ChirpID = in.nextInt();
+				in.nextLine();
+
 				
-				  
-			
-			break;
-			case 'L'://Like a Chirp
-
-			break;
-			case 'P'://ReChirp
-
+				try{	
+		
+				cmain.open();
+				PreparedStatement statement2;
+				statement2 = cmain.conn.prepareStatement("UPDATE Chirp SET num_rechirps = num_rechirps+1 WHERE chirp_id = ? ");
+				statement2.setInt (1, ChirpID);
+				statement2.execute();
+				statement2 = cmain.conn.prepareStatement("SELECT user_id FROM Chirp WHERE chirp_id = ?");
+				statement2.setInt(1, ChirpID);
+				ResultSet rs = statement2.executeQuery(); 
+				int chirpUserID = 0;
+				if (rs.next()){
+					chirpUserID = rs.getInt("user_id");
+				}
+				rs.close();
+				System.out.println("INSERTING");
+				statement2 = cmain.conn.prepareStatement("INSERT INTO Rechirp (chirp_id, orig_user_id, new_user_id) VALUES(?, ?, ?)");
+				statement2.setInt(1, ChirpID);
+				statement2.setInt(2, chirpUserID);
+				statement2.setInt(3, userID);
+				statement2.execute(); 
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
 			break;
 			case 'H'://Hashtag
+			break;
+			case 'B'://Reply to
+				
+				
+				try{	
+		
+				cmain.open();
+				System.out.println("Enter ChirpID to reply to: ");
+				ChirpID = in.nextInt();
+				in.nextLine();
+				boolean bPrivate = false;
+				char input;
+				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id, private, reply_to)  VALUES(?, ?, ?, ?, ?, ?)");
+				System.out.println("Enter Chirp(Max 140): ");
+				String Chirp = in.nextLine();
+				statement.setString(1, Chirp);
+				statement.setInt(2, 0);
+				statement.setInt(3, 0);
+				statement.setInt(4,userID);
+				statement.setInt(6, ChirpID);
+				do{	
+					System.out.println("Do you want to set Chirp as private? (y/n) ");
+					input = in.next().charAt(0);
+					input = Character.toUpperCase(input);
+					in.nextLine();
+				}while((input != 'Y') && (input != 'N'));
+				if (input == 'Y')bPrivate = true;
+				else if (input == 'N') bPrivate = false;
+				statement.setBoolean(5, bPrivate);	
+				int  b = statement.executeUpdate();
+		
+				if(b > 0) System.out.println("Congratulations! You have made a Chirp");
+				} catch(SQLException sqlEx) {
+					sqlEx.printStackTrace();
+					System.exit(1);
+				}/*  catch(ClassNotFoundException clsNotFoundEx){
+					clsNotFoundEx.printStackTrace();
+					System.exit(1);
+				 }*/ finally{
+					try{
+						statement.close();
+						cmain.close();
+					} catch(Exception e){
+						System.exit(1);
+					}		
+						
+				}
+
 			default:
 				System.out.println("Not a valid selection, please try again");	
 		}
@@ -375,6 +485,66 @@ public class Query {
 	
 		return true;
 	}
+
+	public void Hashtag(String chirp){
+		int h1 = chirp.indexOf("#", 0);
+		int h = chirp.indexOf(" ", h1+1);
+		String h2;
+		boolean flag = false;
+		int chirpID = 0;
+		int hashtagID = 0;
+
+		if (h1 != -1){
+			if(h == -1){
+				h2 = chirp.substring(h1+1);
+			}
+			else{
+				h2 = chirp.substring(h1+1, h);
+			}
+		try{
+			
+			ResultSet rs = statement.executeQuery("SELECT hashtag FROM HashtagDB");
+			while (rs.next()){
+				String hashtag  = rs.getString("hashtag");
+				//Checks CASE SENSITIVITY
+				String hashtagUP = hashtag.toUpperCase();
+				String h2UP = h2.toUpperCase();
+				if (h2UP.equals(hashtagUP)){
+					flag = true;
+				}}
+			rs.close();
+			if (!flag){
+			
+				statement = cmain.conn.prepareStatement("INSERT INTO HashtagDB(hashtag)  VALUES(?)");
+				statement.setString(1, h2);
+				statement.executeUpdate();
+			}
+			PreparedStatement statement2;
+			statement2 = cmain.conn.prepareStatement("SELECT chirp_id FROM Chirp WHERE chirp = ? ");
+			statement2.setString (1, chirp);
+			rs = statement2.executeQuery();
+			if (rs.next()){
+				chirpID  = rs.getInt("chirp_id");
+			}
+			rs.close();
+			statement2 = cmain.conn.prepareStatement("SELECT hashtag_id FROM HashtagDB WHERE hashtag = ? ");
+			statement2.setString (1, h2);
+			rs = statement2.executeQuery();
+			if (rs.next()){
+				hashtagID  = rs.getInt("hashtag_id");
+			}
+
+			statement = cmain.conn.prepareStatement("INSERT INTO Hashtag (hashtag_id, chirp_id) VALUES(?, ?)");
+			statement.setInt(1, hashtagID);
+			statement.setInt(2, chirpID);
+			statement.executeUpdate();
+			} catch(SQLException sqlEx) {
+				sqlEx.printStackTrace();
+				System.exit(1);
+			}
+	}
+	}
+	
 	
 	private int userID;
 
