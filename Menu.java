@@ -210,9 +210,7 @@ public class Menu
 		//Chirp displayed above menu
 		//Print options
 		System.out.println("L: Like/Unlike");
-		System.out.println("R: Rechirp");
-		//IF IT'S THEIR OWN CHIRP (need an if statement)
-		System.out.println("D: Delete Chirp"); 
+		System.out.println("R: Rechirp"); 
 		System.out.println("B: Back");
 
 		//Get input
@@ -220,9 +218,7 @@ public class Menu
 		boolean valid = false;
 		do {
 			input = getInput();
-			if ((input == 'D') && !isUserChirp)
-				System.out.print("You can't delete someone else's chirp!");
-			else if ((input == 'L') || (input == 'R') || (input == 'D') || (input == 'B'))
+			if ((input == 'L') || (input == 'R') || (input == 'B'))
 				valid = true;
 			else 
 				System.out.println("Please enter a valid character.");
