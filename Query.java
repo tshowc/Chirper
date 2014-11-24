@@ -370,11 +370,6 @@ public class Query {
 	return true;	
 	}
 
-	public boolean QueryDelete(char type){
-
-		return true;	
-	}
-
 	public boolean QuerySearch(char type){
 
 		boolean b = false;
