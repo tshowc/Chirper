@@ -53,6 +53,11 @@ public class ViewChirp //implements View
 		//Print username
 		System.out.printf("  " + "%-4s", username);
 		//Print chirp text
-		System.out.println("\n    " + chirpMessage);
+		System.out.println();
+		if (Integer.toString(chirpID).length() > 1){
+			System.out.printf("    " + "%-4s", chirpMessage);}
+		else{
+			System.out.printf("   " + "%-4s", chirpMessage);}
+		
 	}
 }
