@@ -52,7 +52,7 @@ public class ViewChirp //implements View
 		System.out.print(chirpID);
 		//do the tab thing
 		int temp = chirpID;
-		while (temp > 0)
+		while (temp > 10)
 		{
 			System.out.print(temp + " ");
 			temp = temp % 10;	
