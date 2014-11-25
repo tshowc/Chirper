@@ -107,6 +107,9 @@ public class ChirperMain {
 						else if (choice == 'B'){
 							query.QueryAdd(choice);
 						}
+						else if (choice == 'F'){
+							query.QueryPrint(choice);
+						}
 						}while(choice != 'L');
 						
 				
