@@ -425,7 +425,7 @@ public class Query {
 						
 				}
 		break;
-		case 'V':
+		case 'V'://LOOKING AT YOUR OWN PROFILE
 			try{	
 		
 				cmain.open();
@@ -441,6 +441,8 @@ public class Query {
 					String desc = rs.getString(4);
 					int numSub = rs.getInt(5);
 
+
+					System.out.println("User ID: " + userID);
 					System.out.println("First Name: " + FN);
 					System.out.println("Last Name: " + LN);
 					System.out.println("Age: " + age);
