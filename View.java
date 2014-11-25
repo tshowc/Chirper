@@ -22,7 +22,7 @@ public interface View
 	 * @param id user id number as an integer
 	 * @param num index of the chirp in the feed
 	 */
-	public void printChirp(int num);
+	public void printChirp();
 	
 	/**
 	 * getInput method.

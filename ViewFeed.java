@@ -7,6 +7,11 @@ public class ViewFeed implements View
 
 	}
 
+	public ViewFeed()
+	{
+	
+	}
+
 	public void displayChirps() 
 	{
 		//DATA MEMBERS

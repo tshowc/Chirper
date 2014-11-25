@@ -2,57 +2,64 @@
  * ViewChirp class.
  * implements the View interface. Allows the user to view one individual tweet.
  */
-public class ViewChirp implements View
+public class ViewChirp //implements View
 {
 	//DATA MEMBERS
 	int chirpID;
-	int numIndex;
+	String chirpMessage;
+	String username;
+	boolean privateMessage;
+	int numLikes;
+	int numRechirps;
 
-	public ViewChirp(int id, int num)
+	public ViewChirp(int cid, String chmes, String user, boolean prvt, int likes, int rechirps)
 	{
-		chirpID = id;
-		numIndex = num;
+		chirpID = cid;
+		chirpMessage = chmes;
+		username = user;
+		privateMessage = prvt;
+		numLikes = likes;
+		numRechirps = rechirps;
 	}
 
-	public void displayChirps()
+	public char chirpView()
 	{
 		char input = ' ';
-		Menu menu = new Menu();
+		Menu menu = new Menu(); //make menu
+
 		while (input != 'B')
-		{
-			//Find the chirp with the given ID
-			
-			//Print the chirp
-			printChirp(numIndex);
+		{	
+			//Print the feed view
+			feedView();
+			//Add extra details
+			System.out.print("    Likes: " + numLikes + " Rechirps: " + numRechirps);	
 			//Print the menu
 			boolean valid = false;
 			do { 
-				input = menu.displayChirpMenu(ownChirp);
-				if (input == 'L')
-				{
-					//Like the chirp	
-				}
-				else if (input == 'R')
-				{
-					//Retweet the chirp
-				}
+				input = menu.displayChirpMenu();
 			} while (!valid);
 		}
+		return input;
 	}	
 	
 	/**
  	 * printChirp method.
 	 * Prints an individual chirp from the database.
 	 */ 
-	public void printChirp(int num)
+	public void feedView()
 	{
-		//Print number
-		System.out.print(num + " ");
+		//Print ID
+		System.out.print(chirpID);
+		//do the tab thing
+		int temp = chirpID;
+		while (temp > 0)
+		{
+			System.out.print(" ");
+			temp = temp % 10;	
+		}	
 		//Print username
-		String username = " "; 
-		System.out.println(username);
+		System.out.print(username);
 		//Print chirp text
-		String chirpText = " ";
-		System.out.println("  " + chirpText);
+		System.out.println("    " + chirpMessage);
 	}
 }
