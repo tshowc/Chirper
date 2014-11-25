@@ -85,29 +85,29 @@ public class ChirperMain {
 						char choice;
 						do{
 						choice = menu.displayMain();
-						if (choice == 'M'){
+						if (choice == 'M'){//Create a Chirp
 							query.QueryAdd(choice);
 						}
-						else if (choice == 'E'){
+						else if (choice == 'E'){//Edit Profile
 							query.QueryAdd(choice);
 								
 						}
-						else if (choice == 'V'){
+						else if (choice == 'V'){//View Your Own Profile
 							query.QuerySearch(choice);
 						}
-						else if (choice == 'U'){
+						else if (choice == 'U'){//Subscirbe
 							query.QueryAdd(choice);
 						}
-						else if (choice == 'K'){
+						else if (choice == 'K'){//Like a Chirp
 							query.QueryAdd(choice);
 						}
-						else if (choice == 'P'){
+						else if (choice == 'P'){//ReChirp
 							query.QueryAdd(choice);
 						}
-						else if (choice == 'B'){
+						else if (choice == 'B'){//Reply To
 							query.QueryAdd(choice);
 						}
-						else if (choice == 'F'){
+						else if (choice == 'F'){//Feed
 							query.QueryPrint(choice);
 						}
 						}while(choice != 'L');
