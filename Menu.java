@@ -134,8 +134,16 @@ public class Menu
 
 	public void makeHeader(String header)
 	{
+		//Print logo
+		printLogo();
+
+		//Make it caps
+		header.toUpperCase();
+
 		System.out.println("----------------------------------------------");
-		System.out.println("                  "+header);
+		for (int i = 0; i < ((46 - header.length()) / 2); i++)
+			System.out.print(" ");	
+		System.out.print(header);
 		System.out.println("----------------------------------------------\n");
 	}
 	
