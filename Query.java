@@ -516,19 +516,26 @@ public class Query {
 		case ' ':
 		break;
 		default:
+			int p = 0;
+			char k = ' ';
 			try{
 			cmain.open();
 			Statement statement = cmain.conn.createStatement();
-			ResultSet rs2 = statement.executeQuery("SELECT subscribed_user_id  FROM Subscribe WHERE user_id=" +userID);
-			while (rs2.next()){
-				array.add(rs2.getInt("subscribed_user_id"));
+			ResultSet rs = statement.executeQuery("SELECT subscribed_user_id  FROM Subscribe WHERE user_id=" +userID);
+			while (rs.next()){
+				array.add(rs.getInt("subscribed_user_id"));
 			}
 							
 			for(int i = 0; i < array.size(); i++){
 			System.out.println("Subscribers: ");
 			System.out.println(array.get(i));}
 
-      			ResultSet rs = statement.executeQuery("SELECT * FROM Chirp ORDER BY chirp_id DESC");
+			PreparedStatement statement2;
+
+			while(k != 'B'){
+			statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp ORDER BY chirp_id DESC LIMIT ?, 5");
+			statement2.setInt(1, p);
+			ResultSet rs2 = statement2.executeQuery();
 			int chirpID;
 			int uID;
 			int numLikes;
@@ -536,17 +543,17 @@ public class Query {
 			boolean prvt;
 			String chirpUser = " ";		
 			menu.makeHeader("subscriber feed");						
-	      		while(rs.next()){
+	      		while(rs2.next()){
 				for(int i=0; i< array.size(); i++){
-					if(array.get(i) == rs.getInt("user_id")){
+					if(array.get(i) == rs2.getInt("user_id")){
 						
 						//Get data from database	
-	        				String chirp  = rs.getString("chirp");
-						chirpID = rs.getInt("chirp_id");
-						uID = rs.getInt("user_id");
-						numLikes = rs.getInt("num_likes");
-						numRechirps = rs.getInt("num_rechirps");
-						prvt = rs.getBoolean("private");								
+	        				String chirp  = rs2.getString("chirp");
+						chirpID = rs2.getInt("chirp_id");
+						uID = rs2.getInt("user_id");
+						numLikes = rs2.getInt("num_likes");
+						numRechirps = rs2.getInt("num_rechirps");
+						prvt = rs2.getBoolean("private");								
 						chirpUser = userMap.get(uID);	
 					//	ResultSet rs3 = statement.executeQuery("SELECT username FROM ChirpUser WHERE user_id=" +uID);
 					//	while(rs3.next()){
@@ -562,17 +569,24 @@ public class Query {
 		        			//System.out.print(" Chirp: " + chirp);
 		        			//System.out.print(" User_ID: " + uID);
 		        			//System.out.println(" private: " + prvt);
-					} 
-				}
-			}
+			}}}
+						k = menu.displayFeedMenu(0, 0);
+						if(k == 'N'){
+							p += 5;
+						}
+						else if(k == 'P'){
+							p -= 5;
+						}
+						else{
+						}
 			array.clear();
+			}
 			} catch(SQLException sqlEx) {
                                 sqlEx.printStackTrace();
                                 System.exit(1);
                         }finally{
                                         try{
                                                 cmain.close();
-						menu.displayFeedMenu(0, array.size());
                                         } catch(Exception e){
                                                 System.exit(1);
                                         }
