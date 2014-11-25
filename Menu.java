@@ -200,7 +200,7 @@ public class Menu
 			{
 				System.out.println("Cannot go to previous page!");
 			}
-			else if ((input == 'N') || (input == 'S') || (input == 'B') || (input == 'L'))
+			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B') || (input == 'L'))
 			{
 				valid = true;
 			}

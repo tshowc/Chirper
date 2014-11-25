@@ -524,6 +524,7 @@ public class Query {
 		default:
 			int p = 0;
 			char k = ' ';
+			int currentPage = 0;
 			try{
 			cmain.open();
 			Statement statement = cmain.conn.createStatement();
@@ -583,12 +584,14 @@ public class Query {
 			statement2.close();
 			rs2.close();
 
-						k = menu.displayFeedMenu(0, 3);
+						k = menu.displayFeedMenu(currentPage, 3);
 						if(k == 'N'){
 							p = p + 5;
+							currentPage++;
 						}
 						else if(k == 'P'){
 							p = p - 5;
+							currentPage--;
 						}
 						else{
 						}
