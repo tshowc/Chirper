@@ -7,13 +7,11 @@ public class ViewChirp implements View
 	//DATA MEMBERS
 	int chirpID;
 	int numIndex;
-	boolean ownChirp; //True if this chirp belongs to the user (allows deletion)
 
-	public ViewChirp(int id, int num, boolean ownC)
+	public ViewChirp(int id, int num)
 	{
 		chirpID = id;
 		numIndex = num;
-		ownChirp = ownC;
 	}
 
 	public void displayChirps()
@@ -37,10 +35,6 @@ public class ViewChirp implements View
 				else if (input == 'R')
 				{
 					//Retweet the chirp
-				}
-				else if (input == 'D')
-				{
-					//Delete the chirp
 				}
 			} while (!valid);
 		}

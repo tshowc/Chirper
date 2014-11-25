@@ -131,6 +131,13 @@ public class Menu
 		} while (!valid);
 		return input;
 	}
+
+	public void makeHeader(String header)
+	{
+		System.out.println("----------------------------------------------");
+		System.out.println("                  "+header);
+		System.out.println("----------------------------------------------\n");
+	}
 	
 	/**
 	 * getInput method.
