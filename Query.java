@@ -534,12 +534,13 @@ public class Query {
 			int numLikes;
 			int numRechirps;
 			boolean prvt;
-			String chirpUser = " ";								
+			String chirpUser = " ";		
+			menu.makeHeader("subscriber feed");						
 	      		while(rs.next()){
 				for(int i=0; i< array.size(); i++){
 					if(array.get(i) == rs.getInt("user_id")){
-
-
+						
+						//Get data from database	
 	        				String chirp  = rs.getString("chirp");
 						chirpID = rs.getInt("chirp_id");
 						uID = rs.getInt("user_id");
@@ -552,7 +553,7 @@ public class Query {
 					//		chirpUser = rs3.getString("username");
 					//	}
 
-						//Print
+						//Print data 
 						ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, chirpUser, prvt, numLikes, numRechirps);
 						messageDisplay.feedView();
 
@@ -571,6 +572,7 @@ public class Query {
                         }finally{
                                         try{
                                                 cmain.close();
+						menu.displayFeedMenu(0, array.size());
                                         } catch(Exception e){
                                                 System.exit(1);
                                         }
