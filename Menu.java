@@ -31,6 +31,9 @@ public class Menu
          */
 	public char displayMain()
 	{
+		//clear the screen
+		clearScreen();
+
 		//Print header
 		makeHeader("Main Menu");
                 
@@ -46,7 +49,7 @@ public class Menu
 		System.out.println("K: Like a Chirp");
 		System.out.println("P: Rechirp a Chirp");
 		System.out.println("B: Reply to a Chirp");
-		System.out.println("L: Logout\n");
+		System.out.println("L: Logout");
 
 		//Get user input
 		boolean valid = false;
@@ -91,20 +94,22 @@ public class Menu
 	 */
 	public String displaySearchMenu()
 	{
+		clearScreen();
+
 		//Print header
 		makeHeader("Search");
 
 		//Print options
-		System.out.println("- To search for a user, add an @ to the\nbeginning of the query.");
-		System.out.println("- To search for a tag, add a # to the beginning\nof the query.\n");
-		System.out.println("Please keep search query at one work (ex: #chirpExample, @usernameExample)");		
+		System.out.println("- To search for a user, add an @ to the beginning of the query.");
+		System.out.println("- To search for a tag, add a # to the beginning of the query.");
+		System.out.println("- Please keep search query at one work (ex: #chirpExample, @usernameExample)");		
 
 		//Get user input
 		boolean valid = false;
 		String input;
 		Scanner in = new Scanner(System.in);
 		do {
-			System.out.print("> ");
+			System.out.print("\n> ");
 			input = in.next();
 			//Testing substring
 			//System.out.println(input.substring(0, 1));
@@ -153,7 +158,7 @@ public class Menu
 		boolean valid = false;		
 
 		//Get input
-		System.out.print("> ");
+		System.out.print("\n> ");
 		char userInput = in.next().charAt(0);
 		userInput = Character.toUpperCase(userInput);
 		return userInput;
@@ -171,6 +176,8 @@ public class Menu
 
 	public char displayFeedMenu(int currentPage, int totalPages) 
 	{
+		clearScreen();
+
 		//Print options
 		//IF NEXT PAGE
 		if (currentPage < totalPages)
@@ -195,7 +202,7 @@ public class Menu
 			{
 				System.out.println("Cannot go to previous page!");
 			}
-			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B'))
+			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B') || (input == 'L'))
 			{
 				valid = true;
 			}
@@ -214,7 +221,7 @@ public class Menu
 	 * Displays the menu for selecting a chirp.
 	 * @return user input
 	 */
-	public char displayChirpMenu(boolean isUserChirp)
+	public char displayChirpMenu()
 	{
 		//Chirp displayed above menu
 		//Print options
@@ -244,6 +251,8 @@ public class Menu
 	 */
 	public char displayWelcomeMenu()
 	{
+		clearScreen();
+
 		//Print header
 		makeHeader("welcome");
 	
@@ -270,6 +279,7 @@ public class Menu
 
 	public void displayLoginMenu()
 	{
+		clearScreen();
 		//Print title
 		makeHeader("login");		
 	
@@ -283,6 +293,9 @@ public class Menu
 
 	public void displayRegisterMenu()
 	{
+		//clear screen
+		clearScreen();
+
 		//Print header
 		makeHeader("register");
 	
@@ -303,6 +316,9 @@ public class Menu
 	 */
 	public char displayEditProfile()
 	{
+		//clear the screen
+		clearScreen();
+
 		//Print header
 		makeHeader("Edit profile");
 	
@@ -327,5 +343,12 @@ public class Menu
 
 		//Return input
 		return input;
+	}
+	
+	public void clearScreen()
+	{	
+		//clear the screen
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
 	}
 }
