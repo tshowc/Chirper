@@ -7,12 +7,12 @@ public class ViewChirp //implements View
 	//DATA MEMBERS
 	int chirpID;
 	String chirpMessage;
-	String username;
+	int username;
 	boolean privateMessage;
 	int numLikes;
 	int numRechirps;
 
-	public ViewChirp(int cid, String chmes, String user, boolean prvt, int likes, int rechirps)
+	public ViewChirp(int cid, String chmes, int user, boolean prvt, int likes, int rechirps)
 	{
 		chirpID = cid;
 		chirpMessage = chmes;
@@ -53,6 +53,6 @@ public class ViewChirp //implements View
 		//Print username
 		System.out.printf("%4s", username);
 		//Print chirp text
-		System.out.println("    " + chirpMessage);
+		System.out.println("\n    " + chirpMessage);
 	}
 }
