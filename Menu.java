@@ -176,8 +176,6 @@ public class Menu
 
 	public char displayFeedMenu(int currentPage, int totalPages) 
 	{
-		clearScreen();
-
 		//Print options
 		//IF NEXT PAGE
 		if (currentPage < totalPages)

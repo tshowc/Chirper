@@ -473,14 +473,20 @@ public class Query {
 					int age = rs.getInt(3);
 					String desc = rs.getString(4);
 					int numSub = rs.getInt(5);
-
-
+					
+					//clear the screen
+					menu.clearScreen();
+					menu.makeHeader("my profile");
+	
 					System.out.println("User ID: " + userID);
 					System.out.println("First Name: " + FN);
 					System.out.println("Last Name: " + LN);
 					System.out.println("Age: " + age);
 					System.out.println("Description: " + desc);
 					System.out.println("Number of Subscribers: " + numSub);	
+
+					//display menu
+					menu.displayFeedMenu(0, 1);
 				}			
 				rs.close();
 				} catch(SQLException sqlEx) {
@@ -534,7 +540,10 @@ public class Query {
 			int numLikes;
 			int numRechirps;
 			boolean prvt;
-			String chirpUser = " ";		
+			String chirpUser = " ";	
+
+			//clear and make header
+			menu.clearScreen();	
 			menu.makeHeader("subscriber feed");						
 	      		while(rs.next()){
 				for(int i=0; i< array.size(); i++){
