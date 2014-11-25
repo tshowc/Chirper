@@ -31,13 +31,8 @@ public class Menu
          */
 	public char displayMain()
 	{
-		//Print logo
-		printLogo();
-
-		//Print title
-		System.out.println("----------------------------------------------");
-		System.out.println("                 MAIN  MENU                   ");
-		System.out.println("----------------------------------------------\n");
+		//Print header
+		makeHeader("Main Menu");
                 
 		//Print options
 		System.out.println("Please select an option:");
@@ -76,7 +71,7 @@ public class Menu
 	 * printLogo class.
 	 * Prints the logo. 
 	 */	
-	public void printLogo()
+	private void printLogo()
 	{
 		System.out.println(" ");
 		System.out.println("     _____ _   _                   .-.                ");
@@ -96,10 +91,8 @@ public class Menu
 	 */
 	public String displaySearchMenu()
 	{
-		//Print title
-		System.out.println("----------------------------------------------");
-		System.out.println("                    SEARCH	                  ");
-		System.out.println("----------------------------------------------\n");
+		//Print header
+		makeHeader("Search");
 
 		//Print options
 		System.out.println("- To search for a user, add an @ to the\nbeginning of the query.");
@@ -250,13 +243,8 @@ public class Menu
 	 */
 	public char displayWelcomeMenu()
 	{
-		//Print logo
-		printLogo();
-		
-		//Print title
-		System.out.println("----------------------------------------------");
-		System.out.println("                  WELCOME                     ");
-		System.out.println("----------------------------------------------\n");
+		//Print header
+		makeHeader("welcome");
 	
 		//Print message and options
 		System.out.println("Welcome! Would you like to Login or Register?");
@@ -281,14 +269,9 @@ public class Menu
 
 	public void displayLoginMenu()
 	{
-		//Create new scanner
-		Scanner in = new Scanner(System.in);
-		
 		//Print title
-		System.out.println("----------------------------------------------");
-		System.out.println("                   LOGIN                      ");
-		System.out.println("----------------------------------------------");
-			
+		makeHeader("login");		
+	
 		//Print options
 		//System.out.print("Username: ");
 		//String userName = in.next();
@@ -299,11 +282,9 @@ public class Menu
 
 	public void displayRegisterMenu()
 	{
-		//Print title
-		System.out.println("----------------------------------------------");
-		System.out.println("                 REGISTER                     ");
-		System.out.println("----------------------------------------------");
-		
+		//Print header
+		makeHeader("register");
+	
 		//Print options
 		//NEED TO CHECK IF USERNAME IS ALREADY TAKEN
 		//System.out.print("Username: ");
@@ -321,11 +302,9 @@ public class Menu
 	 */
 	public char displayEditProfile()
 	{
-		//Print Title
-		System.out.println("---------------------------------------------");
-		System.out.println("                 EDIT PROFILE                ");
-		System.out.println("---------------------------------------------\n");
-		
+		//Print header
+		makeHeader("Edit profile");
+	
 		//Print message and options
 		System.out.println("What would you like to edit?");
 		System.out.println("F: First Name");
