@@ -54,7 +54,7 @@ public class ViewChirp //implements View
 		int temp = chirpID;
 		while (temp > 0)
 		{
-			System.out.print(" ");
+			System.out.print(temp + " ");
 			temp = temp % 10;	
 		}	
 		//Print username
