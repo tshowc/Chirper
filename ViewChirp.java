@@ -58,6 +58,7 @@ public class ViewChirp //implements View
 			System.out.printf("    " + "%-4s", chirpMessage);}
 		else{
 			System.out.printf("   " + "%-4s", chirpMessage);}
+		System.out.println();
 		
 	}
 }
