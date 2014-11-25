@@ -176,15 +176,13 @@ public class Menu
 
 	public char displayFeedMenu(int currentPage, int totalPages) 
 	{
-		clearScreen();
-
 		//Print options
 		//IF NEXT PAGE
 		if (currentPage < totalPages)
 			System.out.println("N: Next Page");
 		//IF PREVIOUS PAGE
-	//	if (currentPage != 0)
-	//		System.out.println("P: Previous Page");
+		if (currentPage != 0)
+			System.out.println("P: Previous Page");
 		System.out.println("S: Select Post");
 		System.out.println("L: Like Post");
 		System.out.println("B: Back");
@@ -198,10 +196,10 @@ public class Menu
 			{
 				System.out.println("Cannot go to next page!");	
 			}
-		//	else if ((input == 'P') && (currentPage == 0))
-		//	{
-		//		System.out.println("Cannot go to previous page!");
-		//	}
+			else if ((input == 'P') && (currentPage == 0))
+			{
+				System.out.println("Cannot go to previous page!");
+			}
 			else if ((input == 'N') || (input == 'S') || (input == 'B') || (input == 'L'))
 			{
 				valid = true;
