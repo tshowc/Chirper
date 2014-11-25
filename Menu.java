@@ -159,7 +159,7 @@ public class Menu
 
 		//Get input
 		System.out.print("\n> ");
-		char userInput = in.next().charAt(0);
+		char userInput = in.nextLine().charAt(0);
 		userInput = Character.toUpperCase(userInput);
 		return userInput;
 	}
