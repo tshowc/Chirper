@@ -214,7 +214,7 @@ public class Query {
 					statement1 = cmain.conn.prepareStatement("INSERT INTO Subscribe (user_id, subscribed_user_id) VALUES(?, ?)");
 					statement1.setInt(1, userID);
 					statement1.setInt(2, subID);
-					statement1.execute();
+					statement1.execute();		
 				}
 				else{
 					System.out.println("User does not exist.");
@@ -389,16 +389,17 @@ public class Query {
 				String uname = in.next();
 				System.out.print("Enter Password: ");
 				String pword = in.next();
-				ResultSet rs = statement.executeQuery("SELECT user_id, username, password FROM ChirpUser");
+				ResultSet rs = statement.executeQuery("SELECT user_id, username, password FROM ChirpUser");	
 				while (rs.next()){
 					userID = rs.getInt("user_id");
 					String username = rs.getString("username");
 					String password = rs.getString("password");
-
+						
 					//Checks CASE SENSITIVITY OF USERNAME 
 					String usernameUP = username.toUpperCase();
 					String unameUP = uname.toUpperCase();
 					if (unameUP.equals(usernameUP)&& pword.equals(password)){
+						System.out.print("EQUALS");
 						flag = true;
 						System.out.println("Welcome to the System.");
 						in.nextLine();
@@ -485,11 +486,20 @@ public class Query {
 		default:
 			try{
 			cmain.open();
+			Statement statement = cmain.conn.createStatement();
+			ResultSet rs2 = statement.executeQuery("SELECT subscribed_user_id  FROM Subscribe WHERE user_id=" +userID);
+			while (rs2.next()){
+				array.add(rs2.getInt("subscribed_user_id"));
+			}
+							
+			for(int i = 0; i < array.size(); i++){
+			System.out.println("Subscribers: ");
+			System.out.println(array.get(i));}
+
       			ResultSet rs = statement.executeQuery("SELECT * FROM Chirp ORDER BY chirp_id DESC");
-	
 	      		while(rs.next()){
-				for(int i=0; i<= Max; i++){
-					if(array[i] == rs.getInt("subscribed_user_id")){
+				for(int i=0; i< array.size(); i++){
+					if(array.get(i) == rs.getInt("user_id")){
 
 
 	        				String chirp  = rs.getString("chirp");
@@ -501,12 +511,13 @@ public class Query {
 		
 		        			//Display values
 		        			System.out.print("ChirpID: " + chirpID);
-		        			System.out.print(", chirp: " + chirp);
-		        			System.out.print(", User_ID: " + uID);
-		        			System.out.println(", private: " + prvt);
+		        			System.out.print(" Chirp: " + chirp);
+		        			System.out.print(" User_ID: " + uID);
+		        			System.out.println(" private: " + prvt);
 					} 
 				}
 			}
+			array.clear();
 			} catch(SQLException sqlEx) {
                                 sqlEx.printStackTrace();
                                 System.exit(1);
@@ -598,5 +609,5 @@ public class Query {
 	
 	Scanner in = new Scanner(System.in);
 
-
+	List<Integer> array = new ArrayList<Integer>();	
 }
