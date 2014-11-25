@@ -497,23 +497,39 @@ public class Query {
 			System.out.println(array.get(i));}
 
       			ResultSet rs = statement.executeQuery("SELECT * FROM Chirp ORDER BY chirp_id DESC");
+			int chirpID;
+			int uID;
+			int numLikes;
+			int numRechirps;
+			boolean prvt;
+			String chirpUser = " ";								
 	      		while(rs.next()){
 				for(int i=0; i< array.size(); i++){
 					if(array.get(i) == rs.getInt("user_id")){
 
 
 	        				String chirp  = rs.getString("chirp");
-						int chirpID = rs.getInt("chirp_id");
-						int uID = rs.getInt("user_id");
-						boolean prvt = rs.getBoolean("private");
-						
-						
-		
+						chirpID = rs.getInt("chirp_id");
+						uID = rs.getInt("user_id");
+						numLikes = rs.getInt("num_likes");
+						numRechirps = rs.getInt("num_rechirps");
+						prvt = rs.getBoolean("private");								
+
+					
+					//	ResultSet rs3 = statement.executeQuery("SELECT username FROM ChirpUser WHERE user_id=" +uID);
+					//	while(rs3.next()){
+					//		chirpUser = rs3.getString("username");
+					//	}
+
+						//Print
+						ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, uID, prvt, numLikes, numRechirps);
+						messageDisplay.feedView();
+
 		        			//Display values
-		        			System.out.print("ChirpID: " + chirpID);
-		        			System.out.print(" Chirp: " + chirp);
-		        			System.out.print(" User_ID: " + uID);
-		        			System.out.println(" private: " + prvt);
+		        			//System.out.print("ChirpID: " + chirpID);
+		        			//System.out.print(" Chirp: " + chirp);
+		        			//System.out.print(" User_ID: " + uID);
+		        			//System.out.println(" private: " + prvt);
 					} 
 				}
 			}
