@@ -477,7 +477,50 @@ public class Query {
 	}
 
 	public boolean QueryPrint(char type){
+		switch(type){
+		case ' ':
+		break;
+		default:
+			try{
+			cmain.open();
+      			ResultSet rs = statement.executeQuery("SELECT * FROM Chirp ORDER BY chirp_id DESC");
 	
+	      		while(rs.next()){
+				for(int i=0; i<= Max; i++){
+					if(array[i] == rs.getInt("subscribed_user_id")){
+
+
+	        				String chirp  = rs.getString("chirp");
+						int chirpID = rs.getInt("chirp_id");
+						int uID = rs.getInt("user_id");
+						boolean prvt = rs.getBoolean("private");
+						
+						
+		
+		        			//Display values
+		        			System.out.print("ChirpID: " + chirpID);
+		        			System.out.print(", chirp: " + chirp);
+		        			System.out.print(", User_ID: " + uID);
+		        			System.out.println(", private: " + prvt);
+					} 
+				}
+			}
+			} catch(SQLException sqlEx) {
+                                sqlEx.printStackTrace();
+                                System.exit(1);
+                        }finally{
+                                        try{
+                                                cmain.close();
+                                        } catch(Exception e){
+                                                System.exit(1);
+                                        }
+				}
+
+
+			
+		break;
+ 
+	}
 		return true;
 	}
 
