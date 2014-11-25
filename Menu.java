@@ -131,12 +131,13 @@ public class Menu
 		printLogo();
 
 		//Make it caps
-		header.toUpperCase();
+		header = header.toUpperCase();
 
+		//print header
 		System.out.println("----------------------------------------------");
 		for (int i = 0; i < ((46 - header.length()) / 2); i++)
 			System.out.print(" ");	
-		System.out.print(header);
+		System.out.println(header);
 		System.out.println("----------------------------------------------\n");
 	}
 	
