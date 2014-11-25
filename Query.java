@@ -8,6 +8,38 @@ public class Query {
 		
 		statement = null;
 		cmain = new ChirperMain();
+		int counter = 0;
+		try{	
+	
+			cmain.open();
+			Statement statement = cmain.conn.createStatement();
+			PreparedStatement statement1; 
+			ResultSet rs = statement.executeQuery("SELECT username FROM ChirpUser");
+			while (rs.next()){
+				counter++;
+			}
+			userMap = new HashMap<Integer, String>(counter);
+			rs.close();
+			ResultSet rs2 = statement.executeQuery("SELECT user_id, username FROM ChirpUser");
+			while (rs2.next()){
+				userMap.put(rs2.getInt("user_id"), rs2.getString("username"));
+			}
+			rs2.close();
+
+		} catch(SQLException sqlEx) {
+			sqlEx.printStackTrace();
+			System.exit(1);
+		}/*  catch(ClassNotFoundException clsNotFoundEx){
+			clsNotFoundEx.printStackTrace();
+			System.exit(1);
+		 }*/ finally{
+			try{
+			cmain.close();
+			} catch(Exception e){
+			System.exit(1);
+			}		
+						
+		}
 	}
 	public boolean QueryAdd(char type){
 
@@ -514,15 +546,14 @@ public class Query {
 						numLikes = rs.getInt("num_likes");
 						numRechirps = rs.getInt("num_rechirps");
 						prvt = rs.getBoolean("private");								
-
-					
+						chirpUser = userMap.get(uID);	
 					//	ResultSet rs3 = statement.executeQuery("SELECT username FROM ChirpUser WHERE user_id=" +uID);
 					//	while(rs3.next()){
 					//		chirpUser = rs3.getString("username");
 					//	}
 
 						//Print
-						ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, uID, prvt, numLikes, numRechirps);
+						ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, chirpUser, prvt, numLikes, numRechirps);
 						messageDisplay.feedView();
 
 		        			//Display values
@@ -625,5 +656,8 @@ public class Query {
 	
 	Scanner in = new Scanner(System.in);
 
+	HashMap<Integer, String> userMap;
+		
 	List<Integer> array = new ArrayList<Integer>();	
+
 }
