@@ -50,15 +50,8 @@ public class ViewChirp //implements View
 	{
 		//Print ID
 		System.out.print(chirpID);
-		//do the tab thing
-		int temp = chirpID;
-		while (temp > 10)
-		{
-			System.out.print(temp + " ");
-			temp = temp % 10;	
-		}	
 		//Print username
-		System.out.print(username);
+		System.out.printf("%4s", username);
 		//Print chirp text
 		System.out.println("    " + chirpMessage);
 	}
