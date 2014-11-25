@@ -49,7 +49,7 @@ public class ViewChirp //implements View
 	public void feedView()
 	{
 		//Print ID
-		System.out.print(chirpID);
+		System.out.print("\n" + chirpID);
 		//Print username
 		System.out.printf("%4s", username);
 		//Print chirp text
