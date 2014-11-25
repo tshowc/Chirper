@@ -538,9 +538,10 @@ public class Query {
 
 			PreparedStatement statement2;
 
-			while(k != 'B'){
+			do{
 			statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp ORDER BY chirp_id DESC LIMIT ?, 5");
 			statement2.setInt(1, p);
+			System.out.println("WHAT IS P: " + p);
 			ResultSet rs2 = statement2.executeQuery();
 			int chirpID;
 			int uID;
@@ -579,17 +580,20 @@ public class Query {
 		        			//System.out.print(" User_ID: " + uID);
 		        			//System.out.println(" private: " + prvt);
 			}}}
-						k = menu.displayFeedMenu(0, 0);
+			statement2.close();
+			rs2.close();
+
+						k = menu.displayFeedMenu(0, 3);
 						if(k == 'N'){
-							p += 5;
+							p = p + 5;
 						}
 						else if(k == 'P'){
-							p -= 5;
+							p = p - 5;
 						}
 						else{
 						}
+			}while(k != 'B');
 			array.clear();
-			}
 			} catch(SQLException sqlEx) {
                                 sqlEx.printStackTrace();
                                 System.exit(1);
