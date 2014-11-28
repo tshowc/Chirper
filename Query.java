@@ -505,8 +505,8 @@ public class Query {
 				}
 				
 		break;
-		case 'S'://Search Functionality
-				try{	
+		case 'S'://Search Functionality NOT DONE ONLY PASTED FROM SUSCRIBE
+			/*	try{	
 		
 				cmain.open();
 				Statement statement = cmain.conn.createStatement();
@@ -534,14 +534,14 @@ public class Query {
 				}/*  catch(ClassNotFoundException clsNotFoundEx){
 					clsNotFoundEx.printStackTrace();
 					System.exit(1);
-				 }*/ finally{
+				 } finally{
 					try{
 						cmain.close();
 					} catch(Exception e){
 						System.exit(1);
 					}		
 						
-				}
+				}*/
 
 			 
 			
