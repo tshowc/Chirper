@@ -102,9 +102,11 @@ public class Menu
 		//Print options
 		System.out.println("- To search for a user, add an @ to the beginning of the query.");
 		System.out.println("- To search for a tag, add a # to the beginning of the query.");
-		System.out.println("- Please keep search query at one work (ex: #chirpExample, @usernameExample)");		
+		System.out.println("- Please keep search query at one work (ex: #chirpExample, @usernameExample)");
+		//System.out.println("- To exit out of search please type Q.")		
 
 		//Get user input
+
 		boolean valid = false;
 		String input;
 		Scanner in = new Scanner(System.in);
@@ -114,14 +116,18 @@ public class Menu
 			in.nextLine();
 			//Testing substring
 			//System.out.println(input.substring(0, 1));
-			if (input.substring(0, 1).equals( "#"))
+			if (input.charAt(0) ==  '#')
 			{
 				valid = true;
 			}
-			else if (input.substring(0, 1).equals("@"))
+			else if (input.charAt(0) == '@')
 			{
 				valid = true;	
 			}
+		/*	//Allows user to quit out of loop
+			else if (input.equals("q") || input.equals("Q")){
+				valid = true;
+			}*/
 			else
 			{
 				System.out.println("We encountered an error processing your search!");

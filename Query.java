@@ -506,42 +506,60 @@ public class Query {
 				
 		break;
 		case 'S'://Search Functionality NOT DONE ONLY PASTED FROM SUSCRIBE
-			/*	try{	
-		
+				try{	
+				String searchInput = menu.displaySearchMenu();	
 				cmain.open();
 				Statement statement = cmain.conn.createStatement();
 				PreparedStatement statement1;
 				PreparedStatement statement2;
-				statement2 = cmain.conn.prepareStatement("SELECT user_id FROM ChirpUser WHERE username = ? ");
-				statement2.setString (1, subName);
-				ResultSet rs = statement2.executeQuery();
-				if (rs.next()){
-					int subID = rs.getInt("user_id");
-					statement1 = cmain.conn.prepareStatement("INSERT INTO Subscribe (user_id, subscribed_user_id) VALUES(?, ?)");
-					statement1.setInt(1, userID);
-					statement1.setInt(2, subID);
-					statement1.execute();		
+				
+				if (searchInput.charAt(0) ==  '#')//Hashtag
+				{
+					String searchSub = searchInput.substring(1, searchInput.length());
+					int hashtagID = 0;
+					statement1 = cmain.conn.prepareStatement("SELECT hashtag_id FROM HashtagDB WHERE hashtag = ? ");
+					statement1.setString(1, searchSub);
+					ResultSet rs = statement1.executeQuery();
+					if (rs.next()){
+						hashtagID = rs.getInt("hashtag_id");
+					}
+					rs.close();
+					statement1.close();
+					String chirp;
+					statement2 = cmain.conn.prepareStatement("SELECT chirp FROM Hashtag WHERE hashtag_id = ?");
+					statement2.setInt(1, hashtagID);
+					rs = statement2.executeQuery();
+					while(rs.next()){
+						chirp = rs.getString("chirp");
+						System.out.println(chirp);//TEMPORARY, STILL NEEDS FORMATTING CHIRP AUTHOR, ONLY PUBLIC CHIRPS SHOWN
+					}
+					rs.close();
+					statement2.close();
+							
 				}
-				else{
-					System.out.println("User does not exist.");
+				else if (searchInput.charAt(0) == '@')//Username
+				{
+					//Grab stuff from the user profile
+			
 				}
-					
-				rs.close();
-				statement.close();
+				else()
+				{
+					//Query not found
+				}
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
 					System.exit(1);
 				}/*  catch(ClassNotFoundException clsNotFoundEx){
 					clsNotFoundEx.printStackTrace();
 					System.exit(1);
-				 } finally{
+				 }*/finally{
 					try{
 						cmain.close();
 					} catch(Exception e){
 						System.exit(1);
 					}		
 						
-				}*/
+				}
 
 			 
 			
@@ -559,7 +577,7 @@ public class Query {
 
 	public boolean QueryPrint(char type){
 		switch(type){
-		case '':	
+		case ' ':	
 		break;
 		default:
 			int p = 0;
@@ -704,9 +722,10 @@ public class Query {
 				hashtagID  = rs.getInt("hashtag_id");
 			}
 
-			statement = cmain.conn.prepareStatement("INSERT INTO Hashtag (hashtag_id, chirp_id) VALUES(?, ?)");
+			statement = cmain.conn.prepareStatement("INSERT INTO Hashtag (hashtag_id, chirp_id, chirp) VALUES(?, ?, ?)");
 			statement.setInt(1, hashtagID);
 			statement.setInt(2, chirpID);
+			statement.setString(3, chirp); 
 			statement.executeUpdate();
 			} catch(SQLException sqlEx) {
 				sqlEx.printStackTrace();
