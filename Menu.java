@@ -111,6 +111,7 @@ public class Menu
 		do {
 			System.out.print("\n> ");
 			input = in.next();
+			in.nextLine();
 			//Testing substring
 			//System.out.println(input.substring(0, 1));
 			if (input.substring(0, 1).equals( "#"))
