@@ -580,7 +580,45 @@ public class Query {
 				{
 
 					//Grab stuff from the user profile
-			
+					String searchSub = searchInput.substring(1, searchInput.length());
+					int SearchID = 0;
+					statement1 = cmain.conn.prepareStatement("SELECT user_id FROM ChirpUser WHERE username = ? ");
+					statement1.setString(1, searchSub);
+					ResultSet rs = statement1.executeQuery();
+					if (rs.next()){
+						SearchID = rs.getInt("user_id");
+					}
+					rs.close();
+					statement1.close();
+					statement2 = cmain.conn.prepareStatement("SELECT * FROM ChirpUserProfile WHERE user_id = ?");
+					statement2.setInt(1, SearchID);
+		//			System.out.println("WHAT IS P: " + p);
+					ResultSet rs2 = statement2.executeQuery();
+					
+					if (rs2.next()){
+						
+						String FN = rs2.getString("first_name");
+						String LN = rs2.getString("last_name");
+						int age = rs2.getInt("age");
+						String desc = rs2.getString("description");
+						int numSub = rs2.getInt("num_subscribers");
+						
+						//clear the screen
+						menu.clearScreen();
+						menu.makeHeader( FN + " profile");
+		
+						System.out.println("User ID: " + SearchID);
+						System.out.println("First Name: " + FN);
+						System.out.println("Last Name: " + LN);
+						System.out.println("Age: " + age);
+						System.out.println("Description: " + desc);
+						System.out.println("Number of Subscribers: " + numSub);	
+	
+						//display menu
+						//menu.displayFeedMenu(0, 1);
+					}
+					statement2.close();			
+					rs2.close();					
 				}
 				else
 				{
