@@ -248,7 +248,7 @@ public class Query {
 					statement1.setInt(1, userID);
 					statement1.setInt(2, subID);
 					statement1.execute();
-					statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET num_subscribers = num_subscribers++ WHERE user_id = ?");
+					statement2 = cmain.conn.prepareStatement("UPDATE ChirpUserProfile SET num_subscribers = num_subscribers+1 WHERE user_id = ?");
 					statement2.setInt(1, subID);
 					statement2.execute();		
 				}
