@@ -643,7 +643,7 @@ public class Query {
 			 
 			
 		break;
-		case 'T'://Trending, NOT DONE
+		case 'T'://Trending
 				
 			try{	
 	
