@@ -266,7 +266,8 @@ public class Menu
 		//Print message and options
 		System.out.println("Welcome! Would you like to Login or Register?");
 		System.out.println("L: Login");
-		System.out.println("R: Register\n");
+		System.out.println("R: Register");
+		System.out.println("S: Search\n");
 		System.out.println("Q: Quit");
 	
 		//Get input
@@ -274,7 +275,7 @@ public class Menu
 		char input;
 		do {
 			input = getInput();
-			if ((input == 'L') || (input == 'R') || (input == 'Q'))
+			if ((input == 'L') || (input == 'R') || (input == 'Q') || (input == 'S'))
 				valid = true;
 			else
 				System.out.println("Please enter a valid character.");

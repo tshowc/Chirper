@@ -538,12 +538,16 @@ public class Query {
 					rs = statement2.executeQuery();
 					while(rs.next()){
 						chirp = rs.getString("chirp");
-				//		System.out.println(chirp);//TEMPORARY, STILL NEEDS FORMATTING CHIRP AUTHOR, ONLY PUBLIC CHIRPS SHOWN
 						
 					}
 					rs.close();
 					statement2.close();
-				statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp = ? ORDER BY chirp_id DESC");
+				if (userID == 0){
+					statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp = ? AND private = false ORDER BY chirp_id DESC");
+				}
+				else{
+					statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp = ? ORDER BY chirp_id DESC");
+				}
 				statement2.setString(1, chirp);
 		//		System.out.println("WHAT IS P: " + p);
 				ResultSet rs2 = statement2.executeQuery();
@@ -887,7 +891,7 @@ public class Query {
 	}
 	
 	
-	private int userID;
+	private int userID = 0;
 
 	protected PreparedStatement statement;
 
