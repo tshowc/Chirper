@@ -361,9 +361,11 @@ public class Query {
 				in.nextLine();
 				boolean bPrivate = false;
 				char input;
-				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id, private, reply_to)  VALUES(?, ?, ?, ?, ?, ?)");
+				String recipient;
+				statement = cmain.conn.prepareStatement("INSERT INTO Chirp(chirp, num_likes, num_rechirps, user_id, private, reply_to)  VALUES(?, ?, ?, ?, ?, ?)");	
 				System.out.println("Enter Chirp(Max 140): ");
 				String Chirp = in.nextLine();
+				Chirp = "@Chirp:" + ChirpID + " "  + Chirp; 
 				statement.setString(1, Chirp);
 				statement.setInt(2, 0);
 				statement.setInt(3, 0);
@@ -381,6 +383,7 @@ public class Query {
 				int  b = statement.executeUpdate();
 		
 				if(b > 0) System.out.println("Congratulations! You have made a Chirp");
+				Hashtag(Chirp);
 				} catch(SQLException sqlEx) {
 					sqlEx.printStackTrace();
 					System.exit(1);
@@ -747,19 +750,30 @@ public class Query {
 		        			//System.out.print(" User_ID: " + uID);
 		        			//System.out.println(" private: " + prvt);
 			}}}
-			statement2.close();
-			rs2.close();
-
 						k = menu.displayFeedMenu(currentPage, 3);
-						if(k == 'N'){
+						if(k == 'N'){//Next page
 							p = p + 5;
 							currentPage++;
 						}
-						else if(k == 'P'){
+						else if(k == 'P'){//Prev Page
 							p = p - 5;
 							currentPage--;
 						}
-						else{
+						else if(k == 'L'){//Like a post
+							cmain.close();
+							QueryAdd('K');
+							cmain.open();
+						}
+						else if(k == 'R'){//Rechirp
+							cmain.close();
+							QueryAdd('P');
+							cmain.open();
+						}
+						else if(k == 'M'){
+							cmain.close();
+							QueryAdd('B');
+							cmain.open();
+							
 						}
 			}while(k != 'B');
 			array.clear();

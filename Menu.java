@@ -192,6 +192,8 @@ public class Menu
 			System.out.println("P: Previous Page");
 		System.out.println("S: Select Post");
 		System.out.println("L: Like Post");
+		System.out.println("R: Rechirp Post");
+		System.out.println("M: Reply to Post");
 		System.out.println("B: Back");
 
 		//Get input
@@ -207,7 +209,7 @@ public class Menu
 			{
 				System.out.println("Cannot go to previous page!");
 			}
-			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B') || (input == 'L'))
+			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B') || (input == 'L') || (input == 'R') || (input == 'M'))
 			{
 				valid = true;
 			}
