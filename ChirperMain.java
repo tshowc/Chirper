@@ -81,8 +81,8 @@ public class ChirperMain {
 				break;
 				case 'L':
 					menu.displayLoginMenu();
+					char choice;
 					if(query.QuerySearch(type)){
-						char choice;
 						do{
 						choice = menu.displayMain();
 						if (choice == 'M'){//Create a Chirp
@@ -117,6 +117,10 @@ public class ChirperMain {
 							query.QuerySearch(choice);
 						}
 						}while(choice != 'L');
+					if (choice == 'L'){
+				//		System.out.println("Reset ID");
+						query.resetUserID();
+					}
 						
 				
 					}

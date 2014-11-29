@@ -523,6 +523,7 @@ public class Query {
 				if (searchInput.charAt(0) ==  '#')//Hashtag
 				{
 					String searchSub = searchInput.substring(1, searchInput.length());
+					menu.makeHeader("Chirps containing " + searchSub);						
 					int hashtagID = 0;
 					statement1 = cmain.conn.prepareStatement("SELECT hashtag_id FROM HashtagDB WHERE hashtag = ? ");
 					statement1.setString(1, searchSub);
@@ -532,61 +533,58 @@ public class Query {
 					}
 					rs.close();
 					statement1.close();
-					String chirp = " ";
-					statement2 = cmain.conn.prepareStatement("SELECT chirp FROM Hashtag WHERE hashtag_id = ?");
+					int chirpID = 0;
+					statement2 = cmain.conn.prepareStatement("SELECT chirp_id FROM Hashtag WHERE hashtag_id = ?");
 					statement2.setInt(1, hashtagID);
 					rs = statement2.executeQuery();
 					while(rs.next()){
-						chirp = rs.getString("chirp");
+				//		System.out.println("IN HASHTAG SEARCHING");
+						chirpID = rs.getInt("chirp_id");
 						
-					}
-					rs.close();
-					statement2.close();
-				if (userID == 0){
-					statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp = ? AND private = false ORDER BY chirp_id DESC");
-				}
-				else{
-					statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp = ? ORDER BY chirp_id DESC");
-				}
-				statement2.setString(1, chirp);
-		//		System.out.println("WHAT IS P: " + p);
-				ResultSet rs2 = statement2.executeQuery();
-				int chirpID;
-				int uID;
-				int numLikes;
-				int numRechirps;
-				boolean  prvt;
-				String chirpUser = " ";	
+						if (userID == 0){
+				//			System.out.println("PUBLIC");
+							statement1 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp_id = ? AND private = false ORDER BY chirp_id DESC");
+						}
+						else{
+				//			System.out.println("PRIVATE");
+							statement1 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp_id = ? ORDER BY chirp_id DESC");
+						}
+						statement1.setInt(1,chirpID);
+		//				System.out.println("WHAT IS P: " + p);
+						ResultSet rs2 = statement1.executeQuery();
+						String chirp = " ";
+						int uID;
+						int numLikes;
+						int numRechirps;
+						boolean  prvt;
+						String chirpUser = " ";	
+			
+						//clear and make header
+				      		while(rs2.next()){
+									
+							//Get data from database
+							chirp = rs2.getString("chirp");	
+							chirpID = rs2.getInt("chirp_id");
+							uID = rs2.getInt("user_id");
+							numLikes = rs2.getInt("num_likes");
+							numRechirps = rs2.getInt("num_rechirps");
+							prvt = rs2.getBoolean("private");								
+							chirpUser = userMap.get(uID);	
+						//	ResultSet rs3 = statement.executeQuery("SELECT username FROM ChirpUser WHERE user_id=" +uID);
+						//	while(rs3.next()){
+						//		chirpUser = rs3.getString("username");
+						//	}
 	
-				//clear and make header
-				menu.clearScreen();	
-				menu.makeHeader("Chirps containing " + searchSub);						
-		      		while(rs2.next()){
-							
-						//Get data from database	
-						chirpID = rs2.getInt("chirp_id");
-						uID = rs2.getInt("user_id");
-						numLikes = rs2.getInt("num_likes");
-						numRechirps = rs2.getInt("num_rechirps");
-						prvt = rs2.getBoolean("private");								
-						chirpUser = userMap.get(uID);	
-					//	ResultSet rs3 = statement.executeQuery("SELECT username FROM ChirpUser WHERE user_id=" +uID);
-					//	while(rs3.next()){
-					//		chirpUser = rs3.getString("username");
-					//	}
-
-						//Print data 	
-						ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, chirpUser, prvt, numLikes, numRechirps);
-						messageDisplay.feedView();
-			        		//Display values
-			        		//System.out.print("ChirpID: " + chirpID);
-			        		//System.out.print(" Chirp: " + chirp);
-			        		//System.out.print(" User_ID: " + uID);
-			        		//System.out.println(" private: " + prvt);
-				}
-				statement2.close();
-				rs2.close();
-				}
+							//Print data 	
+							ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, chirpUser, prvt, numLikes, numRechirps);
+							messageDisplay.feedView();
+				        		//Display values
+				        		//System.out.print("ChirpID: " + chirpID);
+				        		//System.out.print(" Chirp: " + chirp);
+				        		//System.out.print(" User_ID: " + uID);
+				        		//System.out.println(" private: " + prvt);
+						}
+				}}
 				else if (searchInput.charAt(0) == '@')//Username
 				{
 
@@ -889,7 +887,11 @@ public class Query {
 			}
 	}
 	}
-	
+
+
+	public void resetUserID(){
+		userID = 0;
+	}	
 	
 	private int userID = 0;
 
