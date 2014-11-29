@@ -646,12 +646,14 @@ public class Query {
 				
 			try{	
 	
+			menu.makeHeader("Top 5 Trending Hashtags");
+			int pos = 1;
 			cmain.open();
 			Statement statement = cmain.conn.createStatement();
 			ResultSet rs = statement.executeQuery("SELECT hashtag FROM HashtagDB ORDER BY num_hash DESC LIMIT 5");
 			while(rs.next()){
-				menu.makeHeader("Trending Hashtags");
-				System.out.println(rs.getString("hashtag"));
+				System.out.println( pos + ". " + rs.getString("hashtag"));
+				pos++;
 			}
 
 			} catch(SQLException sqlEx) {
