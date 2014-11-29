@@ -43,7 +43,7 @@ public class Menu
 		System.out.println("E: Edit Profile");
 		System.out.println("S: Search");
 		System.out.println("T: Trending");
-		System.out.println("F: Return to Feed");
+		System.out.println("F: View Feed");
 		System.out.println("M: Make a Chirp");
 		System.out.println("U: Subscribe to User");
 		System.out.println("K: Like a Chirp");
