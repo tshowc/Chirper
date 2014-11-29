@@ -231,6 +231,7 @@ public class Query {
 			case 'U'://Add a Subscriber
 				System.out.println("Enter username of person you want to subscribe to: ");
 				String subName = in.next();
+				in.nextLine();
 
 				try{	
 		
@@ -431,7 +432,7 @@ public class Query {
 					String usernameUP = username.toUpperCase();
 					String unameUP = uname.toUpperCase();
 					if (unameUP.equals(usernameUP)&& pword.equals(password)){
-						System.out.print("EQUALS");
+				//		System.out.print("EQUALS");
 						flag = true;
 						System.out.println("Welcome to the System.");
 						in.nextLine();

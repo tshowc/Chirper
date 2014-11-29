@@ -22,7 +22,7 @@ public class ChirperMain {
 	
 	public void open(){
 
-	System.out.println("-------- MySQL JDBC Connection Testing ------------");
+//	System.out.println("-------- MySQL JDBC Connection Testing ------------");
 	try {
 	Class.forName("com.mysql.jdbc.Driver");
 	 } catch (ClassNotFoundException e) {
@@ -32,7 +32,7 @@ public class ChirperMain {
 	    return;
 	}
 	
-	System.out.println("MySQL JDBC Driver Registered!");
+//	System.out.println("MySQL JDBC Driver Registered!");
 	conn = null;
 	
         String url = "jdbc:mysql://localhost/cpsc348_chao";
@@ -49,7 +49,7 @@ public class ChirperMain {
 	}
 	
 	if (conn != null) {
-	    System.out.println("You made it, take control your database now!");
+//	    System.out.println("You made it, take control your database now!");
 	} else {
 	    System.out.println("Failed to make connection!");
 	}
@@ -137,7 +137,7 @@ public class ChirperMain {
 	if(conn != null){
 		try { 
 			conn.close();
-			System.out.println("You closed the database!");
+//			System.out.println("You closed the database!");
 		} catch (SQLException e){
 			System.out.println("Database cannot be closed, try again!");
 	}
