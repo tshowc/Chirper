@@ -505,7 +505,7 @@ public class Query {
 				}
 				
 		break;
-		case 'S'://Search Functionality NOT DONE ONLY PASTED FROM SUSCRIBE
+		case 'S'://Search Functionality
 				try{	
 				String searchInput = menu.displaySearchMenu();	
 				cmain.open();
@@ -641,6 +641,45 @@ public class Query {
 
 			 
 			
+		break;
+		case 'T'://Trending, NOT DONE
+				
+			try{	
+	
+			cmain.open();
+			Statement statement = cmain.conn.createStatement();
+			PreparedStatement statement1;
+			PreparedStatement statement2;
+			statement2 = cmain.conn.prepareStatement("SELECT user_id FROM ChirpUser WHERE username = ? ");
+			statement2.setString (1, subName);
+			ResultSet rs = statement2.executeQuery();
+			if (rs.next()){
+				int subID = rs.getInt("user_id");
+				statement1 = cmain.conn.prepareStatement("INSERT INTO Subscribe (user_id, subscribed_user_id) VALUES(?, ?)");
+				statement1.setInt(1, userID);
+				statement1.setInt(2, subID);
+				statement1.execute();		
+			}
+			else{
+				System.out.println("User does not exist.");
+			}
+				
+			rs.close();
+			statement.close();
+			} catch(SQLException sqlEx) {
+				sqlEx.printStackTrace();
+				System.exit(1);
+			}/*  catch(ClassNotFoundException clsNotFoundEx){
+				clsNotFoundEx.printStackTrace();
+				System.exit(1);
+			 }*/ finally{
+				try{
+					cmain.close();
+				} catch(Exception e){
+					System.exit(1);
+				}		
+					
+			}
 		break;
 		default: 	
 			System.out.println("Not a valid selection, please try again");	
