@@ -12,8 +12,9 @@ public class Query {
 		try{	
 	
 			cmain.open();
+
 			Statement statement = cmain.conn.createStatement();
-			PreparedStatement statement1; 
+			//Initializing HashMap for User
 			ResultSet rs = statement.executeQuery("SELECT username FROM ChirpUser");
 			while (rs.next()){
 				counter++;
@@ -25,7 +26,6 @@ public class Query {
 				userMap.put(rs2.getInt("user_id"), rs2.getString("username"));
 			}
 			rs2.close();
-
 		} catch(SQLException sqlEx) {
 			sqlEx.printStackTrace();
 			System.exit(1);
@@ -648,24 +648,12 @@ public class Query {
 	
 			cmain.open();
 			Statement statement = cmain.conn.createStatement();
-			PreparedStatement statement1;
-			PreparedStatement statement2;
-			statement2 = cmain.conn.prepareStatement("SELECT user_id FROM ChirpUser WHERE username = ? ");
-			statement2.setString (1, subName);
-			ResultSet rs = statement2.executeQuery();
-			if (rs.next()){
-				int subID = rs.getInt("user_id");
-				statement1 = cmain.conn.prepareStatement("INSERT INTO Subscribe (user_id, subscribed_user_id) VALUES(?, ?)");
-				statement1.setInt(1, userID);
-				statement1.setInt(2, subID);
-				statement1.execute();		
+			ResultSet rs = statement.executeQuery("SELECT hashtag FROM HashtagDB ORDER BY num_hash DESC LIMIT 5");
+			while(rs.next()){
+				menu.makeHeader("Trending Hashtags");
+				System.out.println(rs.getString("hashtag"));
 			}
-			else{
-				System.out.println("User does not exist.");
-			}
-				
-			rs.close();
-			statement.close();
+
 			} catch(SQLException sqlEx) {
 				sqlEx.printStackTrace();
 				System.exit(1);
@@ -839,6 +827,10 @@ public class Query {
 				hashtagID  = rs.getInt("hashtag_id");
 			}
 
+			statement2 = cmain.conn.prepareStatement("UPDATE HashtagDB SET num_hash = num_hash+1 WHERE hashtag_id = ? ");
+			statement2.setInt(1, hashtagID);
+			statement2.execute();
+
 			statement = cmain.conn.prepareStatement("INSERT INTO Hashtag (hashtag_id, chirp_id, chirp) VALUES(?, ?, ?)");
 			statement.setInt(1, hashtagID);
 			statement.setInt(2, chirpID);
@@ -865,7 +857,6 @@ public class Query {
 	Scanner in = new Scanner(System.in);
 
 	HashMap<Integer, String> userMap;
-		
-	List<Integer> array = new ArrayList<Integer>();	
 
+	List<Integer> array = new ArrayList<Integer>();
 }
