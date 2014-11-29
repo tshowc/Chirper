@@ -232,8 +232,8 @@ public class Menu
 	{
 		//Chirp displayed above menu
 		//Print options
-		System.out.println("L: Like/Unlike");
-		System.out.println("R: Rechirp"); 
+		//System.out.println("L: Like/Unlike");
+		//System.out.println("R: Rechirp"); 
 		System.out.println("B: Back");
 
 		//Get input

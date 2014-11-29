@@ -327,7 +327,7 @@ public class Query {
 					chirpUserID = rs.getInt("user_id");
 				}
 				rs.close();
-				System.out.println("INSERTING");
+				//System.out.println("INSERTING");
 				statement2 = cmain.conn.prepareStatement("INSERT INTO Rechirp (chirp_id, orig_user_id, new_user_id) VALUES(?, ?, ?)");
 				statement2.setInt(1, ChirpID);
 				statement2.setInt(2, chirpUserID);
@@ -694,6 +694,7 @@ public class Query {
 			int p = 0;
 			char k = ' ';
 			int currentPage = 0;
+			String chirp;
 			try{
 			cmain.open();
 			Statement statement = cmain.conn.createStatement();
@@ -728,7 +729,7 @@ public class Query {
 					if(array.get(i) == rs2.getInt("user_id")){
 						
 						//Get data from database	
-	        				String chirp  = rs2.getString("chirp");
+	        				chirp  = rs2.getString("chirp");
 						chirpID = rs2.getInt("chirp_id");
 						uID = rs2.getInt("user_id");
 						numLikes = rs2.getInt("num_likes");
@@ -769,12 +770,34 @@ public class Query {
 							QueryAdd('P');
 							cmain.open();
 						}
-						else if(k == 'M'){
+						else if(k == 'M'){//Reply to Post
 							cmain.close();
 							QueryAdd('B');
 							cmain.open();
 							
 						}
+						else if (k == 'S'){//View Single Post
+							
+							System.out.println("Please enter ChirpID: ");
+							int ChirpID = in.nextInt();
+							in.nextLine();
+							
+							statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp WHERE chirp_id = ? LIMIT 1");
+							statement2.setInt(1, ChirpID);
+							rs2 = statement2.executeQuery(); 
+							if (rs2.next()){
+	        						chirp  = rs2.getString("chirp");
+								chirpID = rs2.getInt("chirp_id");
+								uID = rs2.getInt("user_id");
+								numLikes = rs2.getInt("num_likes");
+								numRechirps = rs2.getInt("num_rechirps");
+								prvt = rs2.getBoolean("private");								
+								chirpUser = userMap.get(uID);	
+							ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, chirpUser, prvt, numLikes, numRechirps);
+							messageDisplay.chirpView(numLikes, numRechirps);	
+							}
+						}
+							
 			}while(k != 'B');
 			array.clear();
 			} catch(SQLException sqlEx) {
