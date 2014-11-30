@@ -756,7 +756,7 @@ public class Query {
 		        			//System.out.print(" User_ID: " + uID);
 		        			//System.out.println(" private: " + prvt);
 			}}}
-						k = menu.displayFeedMenu(currentPage, 3);
+						k = menu.displayFeedMenu(currentPage, 1000);
 						if(k == 'N'){//Next page
 							p = p + 5;
 							currentPage++;
