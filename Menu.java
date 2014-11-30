@@ -173,7 +173,6 @@ public class Menu
 	 * IDENTIFY AN AVAILABLE NEXT PAGE OR AVAILABLE PREVIOUS PAGE
 	 * @return user input
 	 */
-
 	public char displayFeedMenu(int currentPage, int totalPages) 
 	{
 		//Print options
