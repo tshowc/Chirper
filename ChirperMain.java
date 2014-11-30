@@ -22,7 +22,7 @@ public class ChirperMain {
 	
 	public void open(){
 
-	System.out.println("-------- MySQL JDBC Connection Testing ------------");
+//	System.out.println("-------- MySQL JDBC Connection Testing ------------");
 	try {
 	Class.forName("com.mysql.jdbc.Driver");
 	 } catch (ClassNotFoundException e) {
@@ -32,7 +32,7 @@ public class ChirperMain {
 	    return;
 	}
 	
-	System.out.println("MySQL JDBC Driver Registered!");
+//	System.out.println("MySQL JDBC Driver Registered!");
 	conn = null;
 	
         String url = "jdbc:mysql://localhost/cpsc348_chao";
@@ -49,7 +49,7 @@ public class ChirperMain {
 	}
 	
 	if (conn != null) {
-	    System.out.println("You made it, take control your database now!");
+//	    System.out.println("You made it, take control your database now!");
 	} else {
 	    System.out.println("Failed to make connection!");
 	}
@@ -81,8 +81,8 @@ public class ChirperMain {
 				break;
 				case 'L':
 					menu.displayLoginMenu();
+					char choice;
 					if(query.QuerySearch(type)){
-						char choice;
 						do{
 						choice = menu.displayMain();
 						if (choice == 'M'){//Create a Chirp
@@ -110,11 +110,23 @@ public class ChirperMain {
 						else if (choice == 'F'){//Feed
 							query.QueryPrint(choice);
 						}
+						else if (choice == 'S'){
+							query.QuerySearch(choice);
+						}
+						else if (choice == 'T'){
+							query.QuerySearch(choice);
+						}
 						}while(choice != 'L');
+					if (choice == 'L'){
+				//		System.out.println("Reset ID");
+						query.resetUserID();
+					}
 						
 				
 					}
 				break;
+				case 'S': //Search Publically
+					query.QuerySearch('S');	
 				case 'Q': //Do nothing 
 				break;
 				default: System.out.println("Invalid Character. Try Again.");
@@ -131,7 +143,7 @@ public class ChirperMain {
 	if(conn != null){
 		try { 
 			conn.close();
-			System.out.println("You closed the database!");
+//			System.out.println("You closed the database!");
 		} catch (SQLException e){
 			System.out.println("Database cannot be closed, try again!");
 	}

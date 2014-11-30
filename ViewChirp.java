@@ -22,7 +22,7 @@ public class ViewChirp //implements View
 		numRechirps = rechirps;
 	}
 
-	public char chirpView()
+	public char chirpView(int likes, int rechirps)
 	{
 		char input = ' ';
 		Menu menu = new Menu(); //make menu
@@ -32,12 +32,11 @@ public class ViewChirp //implements View
 			//Print the feed view
 			feedView();
 			//Add extra details
-			System.out.print("    Likes: " + numLikes + " Rechirps: " + numRechirps);	
+			System.out.println("    Likes: " + likes + " Rechirps: " + rechirps);	
 			//Print the menu
-			boolean valid = false;
-			do { 
-				input = menu.displayChirpMenu();
-			} while (!valid);
+			 
+			input = menu.displayChirpMenu();
+			input = Character.toUpperCase(input);
 		}
 		return input;
 	}	

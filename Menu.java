@@ -43,7 +43,7 @@ public class Menu
 		System.out.println("E: Edit Profile");
 		System.out.println("S: Search");
 		System.out.println("T: Trending");
-		System.out.println("F: Return to Feed");
+		System.out.println("F: View Feed");
 		System.out.println("M: Make a Chirp");
 		System.out.println("U: Subscribe to User");
 		System.out.println("K: Like a Chirp");
@@ -102,25 +102,32 @@ public class Menu
 		//Print options
 		System.out.println("- To search for a user, add an @ to the beginning of the query.");
 		System.out.println("- To search for a tag, add a # to the beginning of the query.");
-		System.out.println("- Please keep search query at one work (ex: #chirpExample, @usernameExample)");		
+		System.out.println("- Please keep search query at one work (ex: #chirpExample, @usernameExample)");
+		//System.out.println("- To exit out of search please type Q.")		
 
 		//Get user input
+
 		boolean valid = false;
 		String input;
 		Scanner in = new Scanner(System.in);
 		do {
 			System.out.print("\n> ");
 			input = in.next();
+			in.nextLine();
 			//Testing substring
 			//System.out.println(input.substring(0, 1));
-			if (input.substring(0, 1).equals( "#"))
+			if (input.charAt(0) ==  '#')
 			{
 				valid = true;
 			}
-			else if (input.substring(0, 1).equals("@"))
+			else if (input.charAt(0) == '@')
 			{
 				valid = true;	
 			}
+		/*	//Allows user to quit out of loop
+			else if (input.equals("q") || input.equals("Q")){
+				valid = true;
+			}*/
 			else
 			{
 				System.out.println("We encountered an error processing your search!");
@@ -184,6 +191,8 @@ public class Menu
 			System.out.println("P: Previous Page");
 		System.out.println("S: Select Post");
 		System.out.println("L: Like Post");
+		System.out.println("R: Rechirp Post");
+		System.out.println("M: Reply to Post");
 		System.out.println("B: Back");
 
 		//Get input
@@ -199,7 +208,7 @@ public class Menu
 			{
 				System.out.println("Cannot go to previous page!");
 			}
-			else if ((input == 'N') || (input == 'S') || (input == 'B') || (input == 'L'))
+			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B') || (input == 'L') || (input == 'R') || (input == 'M'))
 			{
 				valid = true;
 			}
@@ -222,8 +231,8 @@ public class Menu
 	{
 		//Chirp displayed above menu
 		//Print options
-		System.out.println("L: Like/Unlike");
-		System.out.println("R: Rechirp"); 
+		//System.out.println("L: Like/Unlike");
+		//System.out.println("R: Rechirp"); 
 		System.out.println("B: Back");
 
 		//Get input
@@ -256,7 +265,8 @@ public class Menu
 		//Print message and options
 		System.out.println("Welcome! Would you like to Login or Register?");
 		System.out.println("L: Login");
-		System.out.println("R: Register\n");
+		System.out.println("R: Register");
+		System.out.println("S: Search\n");
 		System.out.println("Q: Quit");
 	
 		//Get input
@@ -264,7 +274,7 @@ public class Menu
 		char input;
 		do {
 			input = getInput();
-			if ((input == 'L') || (input == 'R') || (input == 'Q'))
+			if ((input == 'L') || (input == 'R') || (input == 'Q') || (input == 'S'))
 				valid = true;
 			else
 				System.out.println("Please enter a valid character.");
