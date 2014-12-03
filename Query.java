@@ -41,6 +41,46 @@ public class Query {
 						
 		}
 	}
+
+
+	public void refillHashMap(){
+		
+		statement = null;
+		cmain = new ChirperMain();
+		int counter = 0;
+		try{	
+	
+			cmain.open();
+
+			Statement statement = cmain.conn.createStatement();
+			//Initializing HashMap for User
+			ResultSet rs = statement.executeQuery("SELECT username FROM ChirpUser");
+			while (rs.next()){
+				counter++;
+			}
+			userMap = new HashMap<Integer, String>(counter);
+			rs.close();
+			ResultSet rs2 = statement.executeQuery("SELECT user_id, username FROM ChirpUser");
+			while (rs2.next()){
+				userMap.put(rs2.getInt("user_id"), rs2.getString("username"));
+			}
+			rs2.close();
+		} catch(SQLException sqlEx) {
+			sqlEx.printStackTrace();
+			System.exit(1);
+		}/*  catch(ClassNotFoundException clsNotFoundEx){
+			clsNotFoundEx.printStackTrace();
+			System.exit(1);
+		 }*/ finally{
+			try{
+			cmain.close();
+			} catch(Exception e){
+			System.exit(1);
+			}		
+						
+		}
+	}
+	
 	public boolean QueryAdd(char type){
 
 		switch(type){
@@ -50,8 +90,8 @@ public class Query {
 				try{	
 		
 				cmain.open();
-				menu.displayRegisterMenu();
-		
+				//menu.displayRegisterMenu();
+				
 				Statement statement = cmain.conn.createStatement();
 				PreparedStatement statement1; 
 				System.out.print("Enter desired Username: ");
@@ -351,8 +391,6 @@ public class Query {
 						
 				}
 			break;
-			case 'H'://Hashtag
-			break;
 			case 'B'://Reply to
 				
 				
@@ -459,6 +497,7 @@ public class Query {
 				 }*/ finally{
 					try{
 						cmain.close();
+						refillHashMap();
 					} catch(Exception e){
 						System.exit(1);
 					}		
@@ -513,6 +552,7 @@ public class Query {
 				
 		break;
 		case 'S'://Search Functionality
+				
 				try{	
 				String searchInput = menu.displaySearchMenu();	
 				cmain.open();
@@ -709,7 +749,7 @@ public class Query {
 			}
 							
 			for(int i = 0; i < array.size(); i++){
-			System.out.println("Subscribers: ");
+		//	System.out.println("Subscribers: ");
 			System.out.println(array.get(i));}
 
 			PreparedStatement statement2;

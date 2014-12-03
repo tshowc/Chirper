@@ -58,7 +58,6 @@ public class ChirperMain {
 
 
 	public void run(Query query, Menu menu){	
-
 		char type;
 		do{
 			type = menu.displayWelcomeMenu();
@@ -73,13 +72,13 @@ public class ChirperMain {
 			System.out.println("To quit, enter Q.");
 			choice = Character.toUpperCase(in.next().charAt(0));*/
 			switch(type){
-				case 'R':
+				case 'R'://Register
 					menu.displayRegisterMenu(); 
 						query.QueryAdd(type);	
 					
 					
 				break;
-				case 'L':
+				case 'L'://Login
 					menu.displayLoginMenu();
 					char choice;
 					if(query.QuerySearch(type)){
@@ -110,13 +109,13 @@ public class ChirperMain {
 						else if (choice == 'F'){//Feed
 							query.QueryPrint(choice);
 						}
-						else if (choice == 'S'){
+						else if (choice == 'S'){//Search for a user or a hashtag
 							query.QuerySearch(choice);
 						}
-						else if (choice == 'T'){
+						else if (choice == 'T'){//Trending
 							query.QuerySearch(choice);
 						}
-						}while(choice != 'L');
+						}while(choice != 'L');//Logout
 					if (choice == 'L'){
 				//		System.out.println("Reset ID");
 						query.resetUserID();
