@@ -222,6 +222,44 @@ public class Menu
 		return input;
 	}
 
+	public char displayFeedPubMenu(int currentPage, int totalPages) 
+	{
+		//Print options
+		//IF NEXT PAGE
+		if (currentPage < totalPages)
+			System.out.println("N: Next Page");
+		//IF PREVIOUS PAGE
+		if (currentPage != 0)
+			System.out.println("P: Previous Page");
+		System.out.println("S: Select Post");
+		System.out.println("B: Back");
+
+		//Get input
+		char input;
+		boolean valid = false;
+		do {
+			input = getInput();
+			if ((input == 'N') && (currentPage >= totalPages))
+			{
+				System.out.println("Cannot go to next page!");	
+			}
+			else if ((input == 'P') && (currentPage == 0))
+			{
+				System.out.println("Cannot go to previous page!");
+			}
+			else if ((input == 'N') || (input == 'P') || (input == 'S') || (input == 'B'))
+			{
+				valid = true;
+			}
+			else
+			{
+				System.out.println("Please enter a valid character.");
+			}
+		} while(!valid);
+
+		//Return input
+		return input;
+	}
 	/**
 	 * displayChirpMenu method.
 	 * Displays the menu for selecting a chirp.
@@ -266,6 +304,7 @@ public class Menu
 		System.out.println("Welcome! Would you like to Login or Register?");
 		System.out.println("L: Login");
 		System.out.println("R: Register");
+		System.out.println("P: Public Feed");
 		System.out.println("S: Search\n");
 		System.out.println("Q: Quit");
 	
@@ -274,7 +313,7 @@ public class Menu
 		char input;
 		do {
 			input = getInput();
-			if ((input == 'L') || (input == 'R') || (input == 'Q') || (input == 'S'))
+			if ((input == 'L') || (input == 'R') || (input == 'Q') || (input == 'P') || (input == 'S'))
 				valid = true;
 			else
 				System.out.println("Please enter a valid character.");

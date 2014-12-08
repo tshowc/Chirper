@@ -125,7 +125,12 @@ public class ChirperMain {
 					}
 				break;
 				case 'S': //Search Publically
-					query.QuerySearch('S');	
+					query.QuerySearch('S');
+				break;
+				case 'P'://Public Feed
+					query.QueryPrint('P');
+
+				break;	
 				case 'Q': //Do nothing 
 				break;
 				default: System.out.println("Invalid Character. Try Again.");

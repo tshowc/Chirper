@@ -754,6 +754,7 @@ public class Query {
 
 			PreparedStatement statement2;
 
+			
 			do{
 			statement2 = cmain.conn.prepareStatement("SELECT * FROM Chirp ORDER BY chirp_id DESC LIMIT ?, 5");
 			statement2.setInt(1, p);
@@ -768,6 +769,7 @@ public class Query {
 
 			//clear and make header
 			menu.clearScreen();	
+			if (userID > 0){
 			menu.makeHeader("subscriber feed");						
 	      		while(rs2.next()){
 				for(int i=0; i< array.size(); i++){
@@ -796,7 +798,37 @@ public class Query {
 		        			//System.out.print(" User_ID: " + uID);
 		        			//System.out.println(" private: " + prvt);
 			}}}
+						
 						k = menu.displayFeedMenu(currentPage, 1000);
+			}
+			else if (userID == 0){
+			menu.makeHeader("public feed");						
+	      		while(rs2.next()){
+						//Get data from database	
+	        				chirp  = rs2.getString("chirp");
+						chirpID = rs2.getInt("chirp_id");
+						uID = rs2.getInt("user_id");
+						numLikes = rs2.getInt("num_likes");
+						numRechirps = rs2.getInt("num_rechirps");
+						prvt = rs2.getBoolean("private");								
+						chirpUser = userMap.get(uID);	
+					//	ResultSet rs3 = statement.executeQuery("SELECT username FROM ChirpUser WHERE user_id=" +uID);
+					//	while(rs3.next()){
+					//		chirpUser = rs3.getString("username");
+					//	}
+
+						//Print data 
+						ViewChirp messageDisplay = new ViewChirp(chirpID, chirp, chirpUser, prvt, numLikes, numRechirps);
+						messageDisplay.feedView();
+
+		        			//Display values
+		        			//System.out.print("ChirpID: " + chirpID);
+		        			//System.out.print(" Chirp: " + chirp);
+		        			//System.out.print(" User_ID: " + uID);
+		        			//System.out.println(" private: " + prvt);
+			}
+						k = menu.displayFeedPubMenu(currentPage, 1000);
+			}
 						if(k == 'N'){//Next page
 							p = p + 5;
 							currentPage++;
@@ -805,17 +837,17 @@ public class Query {
 							p = p - 5;
 							currentPage--;
 						}
-						else if(k == 'L'){//Like a post
+						else if(k == 'L' && userID > 0){//Like a post
 							cmain.close();
 							QueryAdd('K');
 							cmain.open();
 						}
-						else if(k == 'R'){//Rechirp
+						else if(k == 'R' && userID > 0){//Rechirp
 							cmain.close();
 							QueryAdd('P');
 							cmain.open();
 						}
-						else if(k == 'M'){//Reply to Post
+						else if(k == 'M' && userID > 0){//Reply to Post
 							cmain.close();
 							QueryAdd('B');
 							cmain.open();
